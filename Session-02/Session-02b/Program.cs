@@ -4,11 +4,11 @@ Console.WriteLine("\n");
 
 // Question 2
 int numberA = 25;
-int numberB = 5;
+float numberB = 4.2f;
 
 Console.WriteLine($"Let's add and divide numbers {numberA} and {numberB}");
 Console.WriteLine($"Sum: {numberA + numberB}");
-Console.WriteLine($"Division: {numberA / numberB}");
+Console.WriteLine($"Division: {numberA / (float)numberB}");
 Console.WriteLine("\n");
 
 // Question 3
