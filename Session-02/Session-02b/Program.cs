@@ -33,10 +33,10 @@ int seconds = 45678;
 Console.WriteLine("Calculating the number of minutes, hours, days, years");
 Console.WriteLine("Dividing the total number with the appropriate number of seconds");
 Console.WriteLine("The 45678 seconds are in:");
-Console.WriteLine($"Minutes: {seconds / (float)60}");
-Console.WriteLine($"Hours: {seconds / (float)3600}");
-Console.WriteLine($"Days: {seconds / (float)86400}");
-Console.WriteLine($"Years: {seconds / (float)31536000}");
+Console.WriteLine($"Minutes: {seconds / ((float)60)}");
+Console.WriteLine($"Hours: {seconds / ((float)60 * 60)}");
+Console.WriteLine($"Days: {seconds / ((float)60 * 60 * 24)}");
+Console.WriteLine($"Years: {seconds / ((float)60 * 60 * 24 * 365)}");
 Console.WriteLine("\n");
 
 
