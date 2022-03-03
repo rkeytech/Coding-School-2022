@@ -8,9 +8,26 @@ namespace Session_03
 {
     internal class Institute
     {
+        public Guid ID { get; }
+        public int YearsInService { get; set; }
+        public string Name;
+
         public Institute()
         {
-
+            ID = Guid.NewGuid();
+            Name = "";
         }
+
+        public string GetName()
+        {
+            return Name;
+        }
+
+        public void SetName(string name)
+        {
+            Name = name;
+        }
+
+
     }
 }

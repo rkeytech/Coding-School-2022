@@ -8,9 +8,25 @@ namespace Session_03
 {
     internal class Person
     {
+        public Guid ID { get; }
+        public string Name;
+        public int Age { get; set; }
+
         public Person()
         {
+            ID = Guid.NewGuid();
+            Name = "";
 
+        }
+
+        public string GetName()
+        {
+            return Name;
+        }
+
+        public void SetName(string name)
+        {
+            Name = name;
         }
     }
 }

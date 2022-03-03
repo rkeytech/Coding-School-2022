@@ -8,9 +8,15 @@ namespace Session_03
 {
     internal class Course
     {
+        public Guid ID { get; set; }
+        public string Code { get; set; }
+        public string Subject { get; set; }
+
         public Course()
         {
-
+            ID = Guid.NewGuid();
+            Code = "";
+            Subject = "";
         }
     }
 }

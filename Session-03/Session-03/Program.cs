@@ -1,1 +1,2 @@
-﻿Console.WriteLine("Hello world!");
+﻿Guid g = Guid.NewGuid();
+Console.WriteLine(g);

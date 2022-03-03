@@ -8,9 +8,22 @@ namespace Session_03
 {
     internal class Student : Person
     {
+        public int RegistrationNumber { get; set; }
+        public Course[] Courses { get; set; }
+
         public Student()
         {
+            Courses = new Course[20];
+        }
 
+        public void Attend(Course course, DateTime datetime)
+        {
+            // Write functionality for attending a course
+        }
+
+        public void WriteExam(Course course, DateTime datetime)
+        {
+            // Write functionality for writing an exam
         }
     }
 }
