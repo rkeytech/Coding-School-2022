@@ -27,7 +27,7 @@ namespace Session_03
             return Students;
         }
 
-        public Course[] GetCourse()
+        public Course[] GetCourses()
         {
             return Courses;
         }

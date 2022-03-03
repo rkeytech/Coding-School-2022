@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Session_03
 {
-    internal class Person
+    public class Person
     {
         public Guid ID { get; }
         public string Name;
@@ -15,6 +15,7 @@ namespace Session_03
         public Person()
         {
             ID = Guid.NewGuid();
+            // Initializing the string properties so they won't be Null
             Name = "";
 
         }

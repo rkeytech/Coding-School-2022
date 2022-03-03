@@ -15,6 +15,7 @@ namespace Session_03
         public Professor()
         {
             Courses = new Course[20];
+            // Initializing the string properties so they won't be Null
             Rank = "";
         }
 
