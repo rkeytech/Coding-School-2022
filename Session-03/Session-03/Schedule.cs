@@ -11,7 +11,7 @@ namespace Session_03
         public Guid ID { get; set; }
         public Guid CourseID { get; set; }
         public Guid ProfessorID { get; set; }
-        public DateTime Callendar { get; set; }
+        public DateTime Calendar { get; set; }
 
         public Schedule()
         {

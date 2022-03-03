@@ -18,14 +18,19 @@ namespace Session_03
             Rank = "";
         }
 
+        new public string GetName()
+        {
+            return $"Dr.{Name}";
+        }
+
         public void Teach(Course course, DateTime datetime)
         {
             // Write the functionality for the teaching
         }
 
-        public void SetGrade(Guid studentID, Guid courseID, int grade)
+        public void SetGrade(Guid studentID, Guid courseID, Grade grade)
         {
-            // Write the functionality for changnig the grade of a student
+            // Write the functionality for changing the grade of a student
         }
     }
 }

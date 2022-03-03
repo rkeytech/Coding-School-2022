@@ -15,6 +15,7 @@ namespace Session_03
         public Course()
         {
             ID = Guid.NewGuid();
+            // Initializing the string properties so they won't be Null
             Code = "";
             Subject = "";
         }

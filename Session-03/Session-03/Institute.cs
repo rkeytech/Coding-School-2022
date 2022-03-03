@@ -27,7 +27,5 @@ namespace Session_03
         {
             Name = name;
         }
-
-
     }
 }
