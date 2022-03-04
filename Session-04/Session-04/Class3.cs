@@ -13,6 +13,8 @@ namespace Session_04
 
         }
 
+        // Just for implementing more specific accesibility funtionality
+        // and making my code more readable
         private bool isPrime(int number)
         {
             bool primeNumber = true;
@@ -32,7 +34,7 @@ namespace Session_04
 
         public void GetPrimeNumbers(int number)
         {
-            for (int i = 2; i < number; i++)
+            for (int i = 2; i <= number; i++)
             {
                 if (isPrime(i))
                 {
