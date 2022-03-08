@@ -6,7 +6,7 @@ Console.WriteLine("Welcome to the ActionResolver Program");
 // and give it the input we want to provide to the program
 var actionRequest = new ActionRequest()
 {
-    Input = "Timos is awesome",
+    Input = "Timos",
     Action = ActionEnum.Uppercase
 };
 

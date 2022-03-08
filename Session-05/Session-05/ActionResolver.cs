@@ -43,12 +43,15 @@ namespace Session_05
         {
             string[] words = phrase.Split(' ');
             string longestWord = string.Empty;
-            
-            for (int i = 0; i < words.Length; i++)
+
+            if (words.Length > 1)
             {
-                if (longestWord.Length < words[i].Length)
+                for (int i = 0; i < words.Length; i++)
                 {
-                    longestWord = words[i];
+                    if (longestWord.Length < words[i].Length)
+                    {
+                        longestWord = words[i];
+                    }
                 }
             }
 
@@ -80,7 +83,7 @@ namespace Session_05
                     try
                     {
                         int number = Convert.ToInt32(actionRequest.Input);
-                        WriteMessage("We took the input from the Action Request");
+                        WriteMessage("Program took the input from the Action Request");
                         actionResponse.Output = ConvertToBinary(number);
                         WriteMessage($"Converted the decimal number {number} to binary");
                     }
@@ -94,9 +97,15 @@ namespace Session_05
                     try
                     {
                         string phrase = Convert.ToString(actionRequest.Input);
-                        WriteMessage("We took the input from the Action Request");
-                        actionResponse.Output = Uppercase(phrase);
-                        WriteMessage($"We made the longest word in the phrase Uppercase");
+                        WriteMessage("Program took the input from the Action Request");
+                        if (actionResponse.Output != String.Empty)
+                        {
+                            actionResponse.Output = Uppercase(phrase);
+                            WriteMessage($"Made the longest word in the phrase Uppercase");
+                        } else
+                        {
+                            WriteMessage($"Phrase {phrase} has only one word. Can't execute uppercase.");
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -108,9 +117,9 @@ namespace Session_05
                     try
                     {
                         string text = Convert.ToString(actionRequest.Input);
-                        WriteMessage("We took the input from the Action Request");
+                        WriteMessage("Program took the input from the Action Request");
                         actionResponse.Output = Reverse(text);
-                        WriteMessage($"We reversed the string {text}");
+                        WriteMessage($"Reversed the string {text}");
                     }
                     catch (Exception ex)
                     {
@@ -122,7 +131,7 @@ namespace Session_05
                     break;
             }
 
-            WriteMessage("Returned the response with the output back to the user");
+            WriteMessage("Returned the response object with the output back");
             return actionResponse;
 
         }
