@@ -9,7 +9,7 @@ namespace Session_05
     internal class MessageLogger
     {
         private int _messagesIndex = 0;
-        private const int MAX_NUM_OF_MESSAGES = 50;
+        private const int MAX_NUM_OF_MESSAGES = 100;
         public Message[] Messages { get; set; }
 
         public MessageLogger()

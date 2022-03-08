@@ -15,7 +15,7 @@ namespace Session_05
             Logger = new MessageLogger();
         }
 
-        private void WriteErrorMessage(string message)
+        private void WriteMessage(string message)
         {
             var msg = new Message()
             {
@@ -38,16 +38,28 @@ namespace Session_05
             return binaryNumber;
         }
 
-        //private void Uppercase(String phrase)
-        //{
 
-        //}
+        private string Uppercase(string phrase)
+        {
+            string[] words = phrase.Split(' ');
+            string longestWord = string.Empty;
+            
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (longestWord.Length < words[i].Length)
+                {
+                    longestWord = words[i];
+                }
+            }
+
+            return longestWord.ToUpper();
+        }
 
         private string Reverse(String text)
         {
             string reversedString = string.Empty;
 
-            for (int i = text.Length - 1; i >= 0 ; i--)
+            for (int i = text.Length - 1; i >= 0; i--)
             {
                 reversedString += text[i];
             }
@@ -68,26 +80,41 @@ namespace Session_05
                     try
                     {
                         int number = Convert.ToInt32(actionRequest.Input);
+                        WriteMessage("We took the input from the Action Request");
                         actionResponse.Output = ConvertToBinary(number);
+                        WriteMessage($"Converted the decimal number {number} to binary");
                     }
                     catch (Exception ex)
                     {
-                        WriteErrorMessage(ex.Message);
+                        WriteMessage($"Error: {ex.Message}");
                     }
                     break;
 
                 case ActionEnum.Uppercase:
+                    try
+                    {
+                        string phrase = Convert.ToString(actionRequest.Input);
+                        WriteMessage("We took the input from the Action Request");
+                        actionResponse.Output = Uppercase(phrase);
+                        WriteMessage($"We made the longest word in the phrase Uppercase");
+                    }
+                    catch (Exception ex)
+                    {
+                        WriteMessage($"Error: {ex.Message}");
+                    }
                     break;
 
                 case ActionEnum.Reverse:
                     try
                     {
                         string text = Convert.ToString(actionRequest.Input);
+                        WriteMessage("We took the input from the Action Request");
                         actionResponse.Output = Reverse(text);
+                        WriteMessage($"We reversed the string {text}");
                     }
                     catch (Exception ex)
                     {
-                        WriteErrorMessage(ex.Message);
+                        WriteMessage($"Error: {ex.Message}");
                     }
                     break;
 
@@ -95,6 +122,7 @@ namespace Session_05
                     break;
             }
 
+            WriteMessage("Returned the response with the output back to the user");
             return actionResponse;
 
         }
