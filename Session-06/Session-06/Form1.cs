@@ -2,169 +2,148 @@ namespace Session_06
 {
     public partial class Form1 : Form
     {
-        private decimal _result;
-        private Calculations.Calculator _calc;
+        private SimpleCalculator _calc;
+        private double? _result;
 
         public Form1()
         {
             InitializeComponent();
-            _calc = new Calculations.Calculator();
-            _result = 0m;
+            _calc = new SimpleCalculator();
+            _result = null;
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-        private void txtCalculation_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void btnSymbol0_Click(object sender, EventArgs e)
         {
-            this.txtDisplay.Text += "0";
-            this.txtCalculation.Text += "0";
-
-
+            txtDisplay.Text += "0";
+            txtInputValue.Text += "0";
         }
 
         private void btnSymbol1_Click(object sender, EventArgs e)
         {
-            this.txtDisplay.Text += "1";
-            this.txtCalculation.Text += "1";
-
+            txtDisplay.Text += "1";
+            txtInputValue.Text += "1";
         }
 
         private void btnSymbol2_Click(object sender, EventArgs e)
         {
-            this.txtDisplay.Text += "2";
-            this.txtCalculation.Text += "2";
-
+            txtDisplay.Text += "2";
+            txtInputValue.Text += "2";
         }
 
         private void btnSymbol3_Click(object sender, EventArgs e)
         {
-            this.txtDisplay.Text += "3";
-            this.txtCalculation.Text += "3";
-
+            txtDisplay.Text += "3";
+            txtInputValue.Text += "3";
         }
 
         private void btnSymbol4_Click(object sender, EventArgs e)
         {
-            this.txtDisplay.Text += "4";
-            this.txtCalculation.Text += "4";
-
+            txtDisplay.Text += "4";
+            txtInputValue.Text += "4";
         }
 
         private void btnSymbol5_Click(object sender, EventArgs e)
         {
-            this.txtDisplay.Text += "5";
-            this.txtCalculation.Text += "5";
-
+            txtDisplay.Text += "5";
+            txtInputValue.Text += "5";
         }
 
         private void btnSymbol6_Click(object sender, EventArgs e)
         {
-            this.txtDisplay.Text += "6";
-            this.txtCalculation.Text += "6";
-
+            txtDisplay.Text += "6";
+            txtInputValue.Text += "6";
         }
 
         private void btnSymbol7_Click(object sender, EventArgs e)
         {
-            this.txtDisplay.Text += "7";
-            this.txtCalculation.Text += "7";
-
+            txtDisplay.Text += "7";
+            txtInputValue.Text += "7";
         }
 
         private void btnSymbol8_Click(object sender, EventArgs e)
         {
-            this.txtDisplay.Text += "8";
-            this.txtCalculation.Text += "8";
-
+            txtDisplay.Text += "8";
+            txtInputValue.Text += "8";
         }
 
         private void btnSymbol9_Click(object sender, EventArgs e)
         {
-            this.txtDisplay.Text += "9";
-            this.txtCalculation.Text += "9";
-
+            txtDisplay.Text += "9";
+            txtInputValue.Text += "9";
         }
 
-        private void btnSymbolPeriod_Click(object sender, EventArgs e)
+        private void btnSymbolDot_Click(object sender, EventArgs e)
         {
-            this.txtDisplay.Text += ".";
-            this.txtCalculation.Text += ".";
+            txtDisplay.Text += ".";
+            txtInputValue.Text += ".";
         }
+
         private void btnSymbolPlus_Click(object sender, EventArgs e)
         {
-            _result = Convert.ToDecimal(this.txtCalculation.Text);
-            decimal number = Convert.ToDecimal(this.txtCalculation.Text);
-            _result = _calc.Compute(_result, number, Calculations.ComputationTypeEnum.Addition);
-            this.txtDisplay.Text += " + ";
-            this.txtCalculation.Clear();
-            _calc.ComputationType = Calculations.ComputationTypeEnum.Addition;
+            txtDisplay.Text += " + ";
+            double number = Convert.ToDouble(txtInputValue.Text);
+            _calc.ComputationType = ComputationTypeEnum.Addition;
+            _result = _calc.Compute(_result, number, _calc.ComputationType);
+            txtInputValue.Clear();
         }
 
         private void btnSymbolMinus_Click(object sender, EventArgs e)
         {
-            _result = Convert.ToDecimal(this.txtCalculation.Text);
-            decimal number = Convert.ToDecimal(this.txtCalculation.Text);
-            _result = _calc.Compute(_result, number, Calculations.ComputationTypeEnum.Subtraction);
-            this.txtDisplay.Text += " - ";
-            this.txtCalculation.Clear();
-            _calc.ComputationType = Calculations.ComputationTypeEnum.Subtraction;
+            txtDisplay.Text += " - ";
+            double number = Convert.ToDouble(txtInputValue.Text);
+            _calc.ComputationType = ComputationTypeEnum.Subtraction;
+            _result = _calc.Compute(_result, number, _calc.ComputationType);
+            txtInputValue.Clear();
         }
-
-        private void btnSymbolMultiply_Click(object sender, EventArgs e)
+        private void btnSymbolMul_Click(object sender, EventArgs e)
         {
-            _result = Convert.ToDecimal(this.txtCalculation.Text);
-            decimal number = Convert.ToDecimal(this.txtCalculation.Text);
-            _result = _calc.Compute(_result, number, Calculations.ComputationTypeEnum.Multiplication);
-            this.txtDisplay.Text += " * ";
-            this.txtCalculation.Clear();
-            _calc.ComputationType = Calculations.ComputationTypeEnum.Multiplication;
+            txtDisplay.Text += " * ";
+            double number = Convert.ToDouble(txtInputValue.Text);
+            _calc.ComputationType = ComputationTypeEnum.Multiplication;
+            _result = _calc.Compute(_result, number, _calc.ComputationType);
+            txtInputValue.Clear();
         }
-
-        private void btnSymbolDivide_Click(object sender, EventArgs e)
+        private void btnSymbolDiv_Click(object sender, EventArgs e)
         {
-            _result = Convert.ToDecimal(this.txtCalculation.Text);
-            decimal number = Convert.ToDecimal(this.txtCalculation.Text);
-            _result = _calc.Compute(_result, number, Calculations.ComputationTypeEnum.Division);
-            this.txtDisplay.Text += " / ";
-            this.txtCalculation.Clear();
-            _calc.ComputationType = Calculations.ComputationTypeEnum.Division;
-        }
-
-        private void btnSymbolSqrt_Click(object sender, EventArgs e)
-        {
-            _result = Convert.ToDecimal(this.txtCalculation.Text);
-            decimal number = Convert.ToDecimal(this.txtCalculation.Text);
-            _result = _calc.Compute(_result, number, Calculations.ComputationTypeEnum.SquareRoot);
-            this.txtDisplay.Text += " Sqrt ";
-            this.txtCalculation.Clear();
-            _calc.ComputationType = Calculations.ComputationTypeEnum.SquareRoot;
+            txtDisplay.Text += " / ";
+            double number = Convert.ToDouble(txtInputValue.Text);
+            _calc.ComputationType = ComputationTypeEnum.Division;
+            _result = _calc.Compute(_result, number, _calc.ComputationType);
+            txtInputValue.Clear();
         }
         private void btnSymbolPow_Click(object sender, EventArgs e)
         {
-            _result = Convert.ToDecimal(this.txtCalculation.Text);
-            decimal number = Convert.ToDecimal(this.txtCalculation.Text);
-            _result = _calc.Compute(_result, number, Calculations.ComputationTypeEnum.Power);
-            this.txtDisplay.Text += " Power ";
-            this.txtCalculation.Clear();
-            _calc.ComputationType = Calculations.ComputationTypeEnum.Power;
+            txtDisplay.Text += " Power ";
+            double number = Convert.ToDouble(txtInputValue.Text);
+            _calc.ComputationType = ComputationTypeEnum.Power;
+            _result = _calc.Compute(_result, number, _calc.ComputationType);
+            txtInputValue.Clear();
         }
+        private void btnSymbolSqrt_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text += " Sqrt ";
+            double number = Convert.ToDouble(txtInputValue.Text);
+            _calc.ComputationType = ComputationTypeEnum.SquareRoot;
+            _result = _calc.Compute(_result, number, _calc.ComputationType);
+            txtInputValue.Clear();
+        }
+
         private void btnSymbolEqual_Click(object sender, EventArgs e)
         {
-            _result = Convert.ToDecimal(this.txtCalculation.Text);
-            decimal number = Convert.ToDecimal(this.txtCalculation.Text);
-            _result = _calc.Compute(_result, number, _calc.ComputationType);
-            this.txtDisplay.Text += " = " + Convert.ToString(_result) + Environment.NewLine;
-            this.txtCalculation.Clear();
+            txtDisplay.Text += " = ";
+            double number = Convert.ToDouble(txtInputValue.Text);
+            if (_result != null)
+            {
+                _result = _calc.Compute(_result, number, _calc.ComputationType);
+                txtDisplay.Text += $"{_result}{Environment.NewLine}";
+            }
+            else
+            {
+                txtDisplay.Text += $"Result Not a Number!{Environment.NewLine}";
+            }
+            txtInputValue.Clear();
+            _result = null;
 
         }
-
     }
 }
