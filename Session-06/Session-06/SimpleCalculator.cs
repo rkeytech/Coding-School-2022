@@ -37,7 +37,7 @@ namespace Session_06
                     computation = new Computations.Power();
                     break;
                 case ComputationTypeEnum.SquareRoot:
-                    computation = new Computations.Addition();
+                    computation = new Computations.SquareRoot();
                     break;
                 default:
                     break;

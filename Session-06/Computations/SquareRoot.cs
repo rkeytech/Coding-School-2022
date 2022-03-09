@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Computations
 {
-    internal class SquareRoot : Computation
+    public class SquareRoot : Computation
     {
         public SquareRoot()
         {
@@ -15,7 +15,12 @@ namespace Computations
 
         public override double? Execute(double? inputA, double? inputB)
         {
-            return 0d;
+            if (inputA == null)
+            {
+                return inputB;
+            }
+
+            return Math.Sqrt(Convert.ToDouble(inputA));
         }
     }
 }

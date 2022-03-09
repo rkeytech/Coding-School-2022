@@ -121,17 +121,25 @@ namespace Session_06
         }
         private void btnSymbolSqrt_Click(object sender, EventArgs e)
         {
-            txtDisplay.Text += " Sqrt ";
-            double number = Convert.ToDouble(txtInputValue.Text);
+            txtDisplay.Text += " Sqrt";
             _calc.ComputationType = ComputationTypeEnum.SquareRoot;
-            _result = _calc.Compute(_result, number, _calc.ComputationType);
+            _result = Convert.ToDouble(txtInputValue.Text);
             txtInputValue.Clear();
         }
 
         private void btnSymbolEqual_Click(object sender, EventArgs e)
         {
             txtDisplay.Text += " = ";
-            double number = Convert.ToDouble(txtInputValue.Text);
+            double? number;
+            if (_calc.ComputationType == ComputationTypeEnum.SquareRoot)
+            {
+                number = null;
+            }
+            else
+            {
+                number = Convert.ToDouble(txtInputValue.Text);
+            }
+
             if (_result != null)
             {
                 _result = _calc.Compute(_result, number, _calc.ComputationType);
@@ -141,6 +149,7 @@ namespace Session_06
             {
                 txtDisplay.Text += $"Result Not a Number!{Environment.NewLine}";
             }
+
             txtInputValue.Clear();
             _result = null;
 
