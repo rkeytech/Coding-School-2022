@@ -154,5 +154,12 @@ namespace Session_06
             _result = null;
 
         }
+
+        private void btnSymbolCE_Click(object sender, EventArgs e)
+        {
+            _result = null;
+            txtInputValue.Clear();
+            txtDisplay.Clear();
+        }
     }
 }
