@@ -56,6 +56,13 @@ namespace Session_07
         {
             //SaveData();
         }
+        private void barButtonCoursesEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ShowForm(new CoursesForm()
+            {
+                UniversityItem = _universityItem
+            });
+        }
 
         #endregion
 

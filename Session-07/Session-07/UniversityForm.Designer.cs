@@ -162,6 +162,7 @@
             this.barButtonCoursesEdit.Caption = "Edit";
             this.barButtonCoursesEdit.Id = 12;
             this.barButtonCoursesEdit.Name = "barButtonCoursesEdit";
+            this.barButtonCoursesEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonCoursesEdit_ItemClick);
             // 
             // barSubItem4
             // 
