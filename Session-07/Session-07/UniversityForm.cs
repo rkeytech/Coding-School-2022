@@ -28,13 +28,15 @@ namespace Session_07
         {
             _universityItem = new University()
             {
+                Name = "Our University",
+                YearsInService = 100,
                 Students = new List<Student>(),
                 Courses = new List<Course>(),
                 Professors = new List<Professor>(),
                 Grades = new List<Grade>(),
                 ScheduledCourses = new List<Schedule>()
             };
-            //LoadData();
+            LoadData();
         }
 
 
@@ -54,7 +56,7 @@ namespace Session_07
         }
         private void UniversityForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //SaveData();
+            SaveData();
         }
         private void barButtonCoursesEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -63,27 +65,35 @@ namespace Session_07
                 UniversityItem = _universityItem
             });
         }
+        private void barButtonSaveProgram_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            SaveData();
+        }
+        private void barButtonLoadProgram_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadData();
+        }
 
         #endregion
 
-        //private void LoadData()
-        //{
-        //    try
-        //    {
-        //        string f = File.ReadAllText(FILE_NAME);
-        //        _universityItem = (University)JsonConvert.DeserializeObject(f);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        MessageBox.Show("No file found to load.");
-        //    }
-        //}
+        private void LoadData()
+        {
+            try
+            {
+                string fileToLoad = File.ReadAllText(FILE_NAME);
+                _universityItem = JsonConvert.DeserializeObject<University>(fileToLoad);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("There was a problem with loading the file.");
+            }
+        }
 
-        //private void SaveData()
-        //{
-        //    string json = JsonConvert.SerializeObject(_universityItem, Formatting.Indented);
-        //    File.WriteAllText(FILE_NAME, json);
-        //}
+        private void SaveData()
+        {
+            string json = JsonConvert.SerializeObject(_universityItem, Formatting.Indented);
+            File.WriteAllText(FILE_NAME, json);
+        }
 
 
         private void ShowForm(Form form)

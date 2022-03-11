@@ -51,6 +51,9 @@
             this.barStaticItem3 = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem4 = new DevExpress.XtraBars.BarStaticItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.barSubItem5 = new DevExpress.XtraBars.BarSubItem();
+            this.barButtonSaveProgram = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonLoadProgram = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -97,9 +100,12 @@
             this.barButtonStudentsEdit,
             this.barButtonProfessorsEdit,
             this.barButtonCoursesEdit,
-            this.barButtonScheduledEdit});
+            this.barButtonScheduledEdit,
+            this.barSubItem5,
+            this.barButtonSaveProgram,
+            this.barButtonLoadProgram});
             this.barManager1.MainMenu = this.barMain;
-            this.barManager1.MaxItemId = 14;
+            this.barManager1.MaxItemId = 17;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1});
             // 
@@ -112,7 +118,8 @@
             this.barMain.DockRow = 0;
             this.barMain.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.barMain.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem5, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem2),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem3)});
             this.barMain.OptionsBar.MultiLine = true;
@@ -246,6 +253,29 @@
             this.barButtonItem1.Id = 9;
             this.barButtonItem1.Name = "barButtonItem1";
             // 
+            // barSubItem5
+            // 
+            this.barSubItem5.Caption = "System";
+            this.barSubItem5.Id = 14;
+            this.barSubItem5.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonSaveProgram),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonLoadProgram)});
+            this.barSubItem5.Name = "barSubItem5";
+            // 
+            // barButtonSaveProgram
+            // 
+            this.barButtonSaveProgram.Caption = "Save";
+            this.barButtonSaveProgram.Id = 15;
+            this.barButtonSaveProgram.Name = "barButtonSaveProgram";
+            this.barButtonSaveProgram.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonSaveProgram_ItemClick);
+            // 
+            // barButtonLoadProgram
+            // 
+            this.barButtonLoadProgram.Caption = "Load";
+            this.barButtonLoadProgram.Id = 16;
+            this.barButtonLoadProgram.Name = "barButtonLoadProgram";
+            this.barButtonLoadProgram.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonLoadProgram_ItemClick);
+            // 
             // UniversityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -294,6 +324,9 @@
         private DevExpress.XtraBars.BarButtonItem barButtonProfessorsEdit;
         private DevExpress.XtraBars.BarButtonItem barButtonCoursesEdit;
         private DevExpress.XtraBars.BarButtonItem barButtonScheduledEdit;
+        private DevExpress.XtraBars.BarSubItem barSubItem5;
+        private DevExpress.XtraBars.BarButtonItem barButtonSaveProgram;
+        private DevExpress.XtraBars.BarButtonItem barButtonLoadProgram;
     }
 }
 
