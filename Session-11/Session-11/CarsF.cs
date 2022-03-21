@@ -45,8 +45,8 @@ namespace Session_11
             bsCars.DataSource = _carService;
             bsCars.DataMember = "Cars";
 
-            GrdCars.DataSource = bsCars;
-            _controlsHelper.HideColumns("ID", gridView1);
+            grdCars.DataSource = bsCars;
+            _controlsHelper.HideColumns("ID", grvCars);
 
         }
 
@@ -56,7 +56,7 @@ namespace Session_11
 
             CarF carF = new CarF(_carService);
             carF.ShowDialog();
-            gridView1.RefreshData();
+            grvCars.RefreshData();
 
         }
 
@@ -66,7 +66,7 @@ namespace Session_11
 
             CarF carF = new CarF(_carService, _car);
             carF.ShowDialog();
-            gridView1.RefreshData();
+            grvCars.RefreshData();
         }
 
         private void Btndelete_Click(object sender, EventArgs e)
@@ -75,7 +75,7 @@ namespace Session_11
             var car = bsCars.Current as Car;
             _carHandler.Delete(car, _carService.Cars);
             _storageHelper.SaveData("storage.json", _carService);
-            gridView1.RefreshData();
+            grvCars.RefreshData();
         }
 
         private void Btnclose_Click(object sender, EventArgs e)

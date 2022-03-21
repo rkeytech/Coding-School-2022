@@ -42,6 +42,12 @@
             this.bsCustomer = new System.Windows.Forms.BindingSource(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.layoutConverter1 = new DevExpress.XtraLayout.Converter.LayoutConverter(this.components);
+            this.CustomerFlayoutControl1ConvertedLayout = new DevExpress.XtraLayout.LayoutControl();
+            this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.panelControl1item = new DevExpress.XtraLayout.LayoutControlItem();
+            this.Btnexititem = new DevExpress.XtraLayout.LayoutControlItem();
+            this.Btnsaveitem = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.Ctrlname.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ctrlsurname.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ctrlphone.Properties)).BeginInit();
@@ -50,11 +56,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerFlayoutControl1ConvertedLayout)).BeginInit();
+            this.CustomerFlayoutControl1ConvertedLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1item)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Btnexititem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Btnsaveitem)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(66, 34);
+            this.labelControl1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelControl1.Location = new System.Drawing.Point(88, 80);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(27, 13);
             this.labelControl1.TabIndex = 0;
@@ -62,7 +75,8 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(66, 80);
+            this.labelControl2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelControl2.Location = new System.Drawing.Point(88, 126);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(42, 13);
             this.labelControl2.TabIndex = 1;
@@ -70,7 +84,8 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(66, 129);
+            this.labelControl3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelControl3.Location = new System.Drawing.Point(88, 175);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(30, 13);
             this.labelControl3.TabIndex = 2;
@@ -78,7 +93,8 @@
             // 
             // Ctrlname
             // 
-            this.Ctrlname.Location = new System.Drawing.Point(191, 33);
+            this.Ctrlname.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Ctrlname.Location = new System.Drawing.Point(213, 77);
             this.Ctrlname.Name = "Ctrlname";
             this.Ctrlname.Size = new System.Drawing.Size(277, 20);
             this.Ctrlname.TabIndex = 3;
@@ -86,7 +102,8 @@
             // 
             // Ctrlsurname
             // 
-            this.Ctrlsurname.Location = new System.Drawing.Point(191, 79);
+            this.Ctrlsurname.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Ctrlsurname.Location = new System.Drawing.Point(213, 125);
             this.Ctrlsurname.Name = "Ctrlsurname";
             this.Ctrlsurname.Size = new System.Drawing.Size(277, 20);
             this.Ctrlsurname.TabIndex = 4;
@@ -94,7 +111,8 @@
             // 
             // Ctrlphone
             // 
-            this.Ctrlphone.Location = new System.Drawing.Point(191, 124);
+            this.Ctrlphone.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Ctrlphone.Location = new System.Drawing.Point(213, 170);
             this.Ctrlphone.Name = "Ctrlphone";
             this.Ctrlphone.Size = new System.Drawing.Size(277, 20);
             this.Ctrlphone.TabIndex = 5;
@@ -102,7 +120,8 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(66, 171);
+            this.labelControl4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelControl4.Location = new System.Drawing.Point(88, 217);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(17, 13);
             this.labelControl4.TabIndex = 6;
@@ -110,7 +129,8 @@
             // 
             // CtrlTIN
             // 
-            this.CtrlTIN.Location = new System.Drawing.Point(191, 170);
+            this.CtrlTIN.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CtrlTIN.Location = new System.Drawing.Point(213, 216);
             this.CtrlTIN.Name = "CtrlTIN";
             this.CtrlTIN.Size = new System.Drawing.Size(277, 20);
             this.CtrlTIN.TabIndex = 7;
@@ -119,9 +139,10 @@
             // Btnsave
             // 
             this.Btnsave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.Btnsave.Location = new System.Drawing.Point(246, 363);
+            this.Btnsave.Location = new System.Drawing.Point(12, 327);
             this.Btnsave.Name = "Btnsave";
-            this.Btnsave.Size = new System.Drawing.Size(75, 23);
+            this.Btnsave.Size = new System.Drawing.Size(274, 22);
+            this.Btnsave.StyleController = this.CustomerFlayoutControl1ConvertedLayout;
             this.Btnsave.TabIndex = 8;
             this.Btnsave.Text = "Save";
             this.Btnsave.Click += new System.EventHandler(this.Btnsave_Click);
@@ -129,9 +150,10 @@
             // Btnexit
             // 
             this.Btnexit.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.Btnexit.Location = new System.Drawing.Point(448, 363);
+            this.Btnexit.Location = new System.Drawing.Point(290, 327);
             this.Btnexit.Name = "Btnexit";
-            this.Btnexit.Size = new System.Drawing.Size(75, 23);
+            this.Btnexit.Size = new System.Drawing.Size(282, 22);
+            this.Btnexit.StyleController = this.CustomerFlayoutControl1ConvertedLayout;
             this.Btnexit.TabIndex = 9;
             this.Btnexit.Text = "Exit";
             this.Btnexit.Click += new System.EventHandler(this.Btnexit_Click);
@@ -152,19 +174,68 @@
             this.panelControl1.Controls.Add(this.Ctrlname);
             this.panelControl1.Controls.Add(this.Ctrlphone);
             this.panelControl1.Controls.Add(this.Ctrlsurname);
-            this.panelControl1.Location = new System.Drawing.Point(85, 25);
+            this.panelControl1.Location = new System.Drawing.Point(12, 12);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(552, 238);
+            this.panelControl1.Size = new System.Drawing.Size(560, 311);
             this.panelControl1.TabIndex = 10;
+            // 
+            // CustomerFlayoutControl1ConvertedLayout
+            // 
+            this.CustomerFlayoutControl1ConvertedLayout.Controls.Add(this.panelControl1);
+            this.CustomerFlayoutControl1ConvertedLayout.Controls.Add(this.Btnexit);
+            this.CustomerFlayoutControl1ConvertedLayout.Controls.Add(this.Btnsave);
+            this.CustomerFlayoutControl1ConvertedLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CustomerFlayoutControl1ConvertedLayout.Location = new System.Drawing.Point(0, 0);
+            this.CustomerFlayoutControl1ConvertedLayout.Name = "CustomerFlayoutControl1ConvertedLayout";
+            this.CustomerFlayoutControl1ConvertedLayout.Root = this.layoutControlGroup1;
+            this.CustomerFlayoutControl1ConvertedLayout.Size = new System.Drawing.Size(584, 361);
+            this.CustomerFlayoutControl1ConvertedLayout.TabIndex = 11;
+            // 
+            // layoutControlGroup1
+            // 
+            this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup1.GroupBordersVisible = false;
+            this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.panelControl1item,
+            this.Btnexititem,
+            this.Btnsaveitem});
+            this.layoutControlGroup1.Name = "layoutControlGroup1";
+            this.layoutControlGroup1.Size = new System.Drawing.Size(584, 361);
+            this.layoutControlGroup1.TextVisible = false;
+            // 
+            // panelControl1item
+            // 
+            this.panelControl1item.Control = this.panelControl1;
+            this.panelControl1item.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1item.Name = "panelControl1item";
+            this.panelControl1item.Size = new System.Drawing.Size(564, 315);
+            this.panelControl1item.TextSize = new System.Drawing.Size(0, 0);
+            this.panelControl1item.TextVisible = false;
+            // 
+            // Btnexititem
+            // 
+            this.Btnexititem.Control = this.Btnexit;
+            this.Btnexititem.Location = new System.Drawing.Point(278, 315);
+            this.Btnexititem.Name = "Btnexititem";
+            this.Btnexititem.Size = new System.Drawing.Size(286, 26);
+            this.Btnexititem.TextSize = new System.Drawing.Size(0, 0);
+            this.Btnexititem.TextVisible = false;
+            // 
+            // Btnsaveitem
+            // 
+            this.Btnsaveitem.Control = this.Btnsave;
+            this.Btnsaveitem.Location = new System.Drawing.Point(0, 315);
+            this.Btnsaveitem.Name = "Btnsaveitem";
+            this.Btnsaveitem.Size = new System.Drawing.Size(278, 26);
+            this.Btnsaveitem.TextSize = new System.Drawing.Size(0, 0);
+            this.Btnsaveitem.TextVisible = false;
             // 
             // CustomerF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panelControl1);
-            this.Controls.Add(this.Btnexit);
-            this.Controls.Add(this.Btnsave);
+            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.CustomerFlayoutControl1ConvertedLayout);
             this.Name = "CustomerF";
             this.Text = "Customer";
             this.Load += new System.EventHandler(this.CustomerF_Load);
@@ -177,6 +248,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerFlayoutControl1ConvertedLayout)).EndInit();
+            this.CustomerFlayoutControl1ConvertedLayout.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1item)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Btnexititem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Btnsaveitem)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -196,5 +273,11 @@
         private System.Windows.Forms.BindingSource bsCustomer;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraLayout.LayoutControl CustomerFlayoutControl1ConvertedLayout;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
+        private DevExpress.XtraLayout.LayoutControlItem panelControl1item;
+        private DevExpress.XtraLayout.LayoutControlItem Btnexititem;
+        private DevExpress.XtraLayout.LayoutControlItem Btnsaveitem;
+        private DevExpress.XtraLayout.Converter.LayoutConverter layoutConverter1;
     }
 }
