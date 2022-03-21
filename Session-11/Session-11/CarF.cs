@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace Session_11
         private Car _car;
         private CarHandler _carHandler;
         private StorageHelper _storageHelper;
+        private ControlsHelper _controlsHelper;
 
         public CarF(CarService carService)
         {
@@ -26,6 +28,7 @@ namespace Session_11
             _carService = carService;
             _carHandler = new CarHandler();
             _storageHelper = new StorageHelper();
+            _controlsHelper = new ControlsHelper();
         }
 
         public CarF(CarService carService, Car car) : this(carService)
@@ -50,6 +53,11 @@ namespace Session_11
         
         private void Btnsave_Click(object sender, EventArgs e)
         {
+            if (!ValidateChildren(ValidationConstraints.Enabled))
+            {
+                MessageBox.Show("Please fill the empty fields", "Warning");
+                return;
+            }
             SaveCar();
         }
         
@@ -69,8 +77,8 @@ namespace Session_11
         }
 
         private void PopulateControls()
-        {
-
+        { 
+            _controlsHelper.PopulateCarBrands(Ctrlbrand.Properties);
         }
 
         private void SaveCar()
@@ -86,5 +94,49 @@ namespace Session_11
             Close();
         }
 
+        private void Ctrlmodel_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Ctrlmodel.Text))
+            {
+                e.Cancel = true;
+                Ctrlmodel.Focus();
+                errorProvider1.SetError(Ctrlmodel, "Model should not be left blank!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(Ctrlmodel, "");
+            }
+        }
+
+        private void Ctrlcarregistrationnumber_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Ctrlcarregistrationnumber.Text))
+            {
+                e.Cancel = true;
+                Ctrlcarregistrationnumber.Focus();
+                errorProvider1.SetError(Ctrlcarregistrationnumber, "Registration Number should not be left blank!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(Ctrlcarregistrationnumber, "");
+            }
+        }
+
+        private void Ctrlbrand_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Ctrlbrand.EditValue.ToString()))
+            {
+                e.Cancel = true;
+                Ctrlbrand.Focus();
+                errorProvider1.SetError(Ctrlbrand, "Brand should not be left blank!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider1.SetError(Ctrlbrand, "");
+            }
+        }
     }
 }

@@ -56,6 +56,8 @@
             // 
             // GrdTransactions
             // 
+            this.GrdTransactions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.GrdTransactions.Location = new System.Drawing.Point(2, 1);
             this.GrdTransactions.MainView = this.gridView1;
             this.GrdTransactions.Name = "GrdTransactions";
@@ -64,7 +66,7 @@
             this.CarLookUp,
             this.ManagerLookUp,
             this.CustomerLookUp});
-            this.GrdTransactions.Size = new System.Drawing.Size(795, 162);
+            this.GrdTransactions.Size = new System.Drawing.Size(795, 300);
             this.GrdTransactions.TabIndex = 15;
             this.GrdTransactions.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -103,7 +105,8 @@
             // 
             // Btnclose
             // 
-            this.Btnclose.Location = new System.Drawing.Point(392, 309);
+            this.Btnclose.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.Btnclose.Location = new System.Drawing.Point(457, 322);
             this.Btnclose.Name = "Btnclose";
             this.Btnclose.Size = new System.Drawing.Size(80, 23);
             this.Btnclose.TabIndex = 19;
@@ -112,7 +115,8 @@
             // 
             // Btndelete
             // 
-            this.Btndelete.Location = new System.Drawing.Point(271, 309);
+            this.Btndelete.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.Btndelete.Location = new System.Drawing.Point(336, 322);
             this.Btndelete.Name = "Btndelete";
             this.Btndelete.Size = new System.Drawing.Size(75, 23);
             this.Btndelete.TabIndex = 18;
@@ -121,7 +125,8 @@
             // 
             // Btnnew
             // 
-            this.Btnnew.Location = new System.Drawing.Point(150, 309);
+            this.Btnnew.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.Btnnew.Location = new System.Drawing.Point(215, 322);
             this.Btnnew.Name = "Btnnew";
             this.Btnnew.Size = new System.Drawing.Size(75, 23);
             this.Btnnew.TabIndex = 16;
