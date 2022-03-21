@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Session_07
+namespace Session_11
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace Session_07
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UniversityF());
+            Application.Run(new Form1());
         }
     }
 }

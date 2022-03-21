@@ -13,12 +13,12 @@ using System.IO;
 
 namespace Session_07
 {
-    public partial class UniversityForm : Form
+    public partial class UniversityF : Form
     {
         University _universityItem;
         private const string FILE_NAME = "storage.json";
 
-        public UniversityForm()
+        public UniversityF()
         {
             InitializeComponent();
         }
@@ -36,20 +36,16 @@ namespace Session_07
                 Grades = new List<Grade>(),
                 ScheduledCourses = new List<Schedule>()
             };
-            LoadData();
-        }
 
+        }
 
         private void barButtonStudentsEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ShowForm(new StudentsForm()
-            {
-                UniversityItem = _universityItem
-            });
+            ShowForm(new StudentsF(_universityItem));
         }
         private void barButtonProfessorsEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ShowForm(new ProfessorForm()
+            ShowForm(new ProfessorsF()
             {
                 UniversityItem = _universityItem
             });
@@ -60,7 +56,7 @@ namespace Session_07
         }
         private void barButtonCoursesEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ShowForm(new CoursesForm()
+            ShowForm(new CoursesF()
             {
                 UniversityItem = _universityItem
             });

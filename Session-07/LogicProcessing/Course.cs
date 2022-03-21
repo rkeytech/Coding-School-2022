@@ -14,7 +14,8 @@ namespace LogicProcessing
 
         public Course()
         {
-
+            Code = string.Empty;
+            Subject = string.Empty;
         }
     }
 }

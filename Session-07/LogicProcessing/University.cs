@@ -17,7 +17,11 @@ namespace LogicProcessing
 
         public University()
         {
-
+            Students = new List<Student>();
+            Courses = new List<Course>();
+            Grades = new List<Grade>();
+            Professors = new List<Professor>();
+            ScheduledCourses = new List<Schedule>();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace LogicProcessing
         public List<Course> Courses { get; set; }
         public Student()
         {
-
+            Courses = new List<Course>();
         }
     }
 }

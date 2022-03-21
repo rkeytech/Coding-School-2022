@@ -15,7 +15,7 @@ namespace LogicProcessing
 
         public Person()
         {
-
+            Name = string.Empty;
         }
     }
 }

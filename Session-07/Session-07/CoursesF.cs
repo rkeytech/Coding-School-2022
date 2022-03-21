@@ -11,18 +11,17 @@ using System.Windows.Forms;
 
 namespace Session_07
 {
-    public partial class CoursesForm : Form
+    public partial class CoursesF : Form
     {
         public University UniversityItem { get; set; }
-        private UniversityHandler _universityHandler;
         private Course _selectedCourse;
 
 
-        public CoursesForm()
+        public CoursesF()
         {
             InitializeComponent();
-            _universityHandler = new UniversityHandler();
         }
+        #region UI Controls
 
         private void CoursesForm_Load(object sender, EventArgs e)
         {
@@ -58,11 +57,11 @@ namespace Session_07
 
         private void buttonAddCourse_Click(object sender, EventArgs e)
         {
-            Course course = NewCourse();
             ShowList();
-            listBoxCourses.SelectedIndex = UniversityItem.Courses.IndexOf(course);
 
         }
+
+        #endregion
 
         private void ShowList()
         {
@@ -95,10 +94,7 @@ namespace Session_07
                 _selectedCourse.Subject = textEditSubject.Text;
             }
         }
-        private Course NewCourse()
-        {
-            return _universityHandler.CreateCourse(UniversityItem.Courses, "Insert Code");
-        }
+      
 
         private void SelectCourse()
         {
@@ -116,7 +112,6 @@ namespace Session_07
         }
         private void DeleteCourse()
         {
-            _universityHandler.DeleteCourse(_selectedCourse, UniversityItem.Courses);
             _selectedCourse = null;
 
         }

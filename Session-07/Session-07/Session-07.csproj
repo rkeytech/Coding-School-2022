@@ -94,40 +94,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoursesForm.cs">
+    <Compile Include="CoursesF.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CoursesForm.Designer.cs">
-      <DependentUpon>CoursesForm.cs</DependentUpon>
+    <Compile Include="CoursesF.Designer.cs">
+      <DependentUpon>CoursesF.cs</DependentUpon>
     </Compile>
-    <Compile Include="UniversityForm.cs">
+    <Compile Include="UniversityF.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UniversityForm.Designer.cs">
-      <DependentUpon>UniversityForm.cs</DependentUpon>
+    <Compile Include="UniversityF.Designer.cs">
+      <DependentUpon>UniversityF.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProfessorForm.cs">
+    <Compile Include="ProfessorsF.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProfessorForm.Designer.cs">
-      <DependentUpon>ProfessorForm.cs</DependentUpon>
+    <Compile Include="ProfessorsF.Designer.cs">
+      <DependentUpon>ProfessorsF.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StudentsForm.cs">
+    <Compile Include="StudentsF.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StudentsForm.Designer.cs">
-      <DependentUpon>StudentsForm.cs</DependentUpon>
+    <Compile Include="StudentsF.Designer.cs">
+      <DependentUpon>StudentsF.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CoursesForm.resx">
-      <DependentUpon>CoursesForm.cs</DependentUpon>
+    <EmbeddedResource Include="CoursesF.resx">
+      <DependentUpon>CoursesF.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UniversityForm.resx">
-      <DependentUpon>UniversityForm.cs</DependentUpon>
+    <EmbeddedResource Include="UniversityF.resx">
+      <DependentUpon>UniversityF.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProfessorForm.resx">
-      <DependentUpon>ProfessorForm.cs</DependentUpon>
+    <EmbeddedResource Include="ProfessorsF.resx">
+      <DependentUpon>ProfessorsF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -139,8 +139,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="StudentsForm.resx">
-      <DependentUpon>StudentsForm.cs</DependentUpon>
+    <EmbeddedResource Include="StudentsF.resx">
+      <DependentUpon>StudentsF.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

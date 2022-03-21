@@ -11,25 +11,21 @@ using System.Windows.Forms;
 
 namespace Session_07
 {
-    public partial class ProfessorForm : Form
+    public partial class ProfessorsF : Form
     {
         public University UniversityItem { get; set; }
         private Professor _selectedProfessor;
-        private ProfessorHandler _professorHandler;
 
-        public ProfessorForm()
+        public ProfessorsF()
         {
             InitializeComponent();
-            _professorHandler = new ProfessorHandler();
         }
 
         #region UI Controls
 
         private void buttonAddProfessor_Click(object sender, EventArgs e)
         {
-            Professor professor = NewProfessor();
             ShowList();
-            listBoxProfessors.SelectedIndex = UniversityItem.Professors.IndexOf(professor);
 
         }
 
@@ -113,10 +109,6 @@ namespace Session_07
             }
         }
 
-        private Professor NewProfessor()
-        {
-            return _professorHandler.CreateObject(UniversityItem.Professors, "Insert Name");
-        }
 
         private void SelectProfessor()
         {
@@ -135,7 +127,6 @@ namespace Session_07
 
         private void DeleteProfessor()
         {
-            _professorHandler.DeleteObject(_selectedProfessor, UniversityItem.Professors);
             _selectedProfessor = null;
 
         }
