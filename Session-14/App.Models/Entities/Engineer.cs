@@ -11,7 +11,6 @@ namespace App.Models.Entities
     {
         public Guid? ManagerID { get; set; }
         public decimal SallaryPerMonth { get; set; }
-
         public StatusEnum Status { get; set; }
 
         public Engineer()
