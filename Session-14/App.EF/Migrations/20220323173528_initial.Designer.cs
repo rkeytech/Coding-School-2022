@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.EF.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20220323141205_AddTableRelashionships")]
-    partial class AddTableRelashionships
+    [Migration("20220323173528_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -109,7 +109,6 @@ namespace App.EF.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ManagerID")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -244,16 +243,14 @@ namespace App.EF.Migrations
 
                     b.HasIndex("TransactionID");
 
-                    b.ToTable("TransactionLines");
+                    b.ToTable("TransactionLine");
                 });
 
             modelBuilder.Entity("App.Models.Entities.Engineer", b =>
                 {
                     b.HasOne("App.Models.Entities.Manager", "Manager")
                         .WithMany()
-                        .HasForeignKey("ManagerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ManagerID");
 
                     b.Navigation("Manager");
                 });

@@ -25,7 +25,7 @@ namespace Session_14
 
             ServiceProvider = services.BuildServiceProvider();
             var mainForm = ServiceProvider.GetRequiredService<Form1>();
-            Application.Run(new Form1());
+            Application.Run(mainForm);
         }
     }
 }

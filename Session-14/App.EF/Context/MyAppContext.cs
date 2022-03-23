@@ -17,7 +17,6 @@ namespace App.EF.Context
         public DbSet<Engineer> Engineers { get; set; }
         public DbSet<ServiceTask> ServiceTasks { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<TransactionLine> TransactionLines { get; set; }
         public DbSet<Credential> Credentials { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,20 +24,23 @@ namespace App.EF.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new CarConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
-            modelBuilder.ApplyConfiguration(new ManagerConfiguration());
-            modelBuilder.ApplyConfiguration(new EngineerConfiguration());
             modelBuilder.ApplyConfiguration(new ServiceTaskConfiguration());
             modelBuilder.ApplyConfiguration(new CredentialConfiguration());
+            modelBuilder.ApplyConfiguration(new ManagerConfiguration());
+            modelBuilder.ApplyConfiguration(new EngineerConfiguration());
+            modelBuilder.ApplyConfiguration(new TransactionLineConfiguration());
+            modelBuilder.ApplyConfiguration(new TransactionConfiguration());
 
             modelBuilder.Entity<Manager>().Ignore(manaeger => manaeger.FullName);
             modelBuilder.Entity<Customer>().Ignore(customer => customer.FullName);
             modelBuilder.Entity<Engineer>().Ignore(engineer => engineer.FullName);
+            modelBuilder.Entity<Car>().Ignore(car => car.FullName);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            var connectiopnString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CarCenter;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            var connectiopnString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DBCarCenter;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             optionsBuilder.UseSqlServer(connectiopnString);
         }
 

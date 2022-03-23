@@ -16,9 +16,8 @@ namespace App.EF.Configuration
             builder.HasKey(engineer => engineer.ID);
             builder.Property(engineer => engineer.Name).HasMaxLength(50);
             builder.Property(engineer => engineer.Surname).HasMaxLength(50);
-            builder.Property(engineer => engineer.ManagerID).IsRequired(true);
 
-            builder.HasOne(engineer => engineer.Manager).WithOne().HasForeignKey<Engineer>(engineer => engineer.ManagerID);
+            builder.HasOne(engineer => engineer.Manager).WithMany().HasForeignKey(engineer => engineer.ManagerID).OnDelete(DeleteBehavior.NoAction).IsRequired();
         }
     }
 }

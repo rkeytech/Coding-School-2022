@@ -13,11 +13,10 @@ namespace App.EF.Configuration
     {
         public void Configure(EntityTypeBuilder<TransactionLine> builder)
         {
-            builder.HasKey(transaction => transaction.ID);
+            builder.HasKey(transactionLine => transactionLine.ID);
 
-            builder.HasOne(transactionLine => transactionLine.Transaction).WithMany(transaction => transaction.TransactionLines).HasForeignKey(transaction => transaction.TransactionID);
-            builder.HasOne(transactionLine => transactionLine.Engineer).WithOne().HasForeignKey<TransactionLine>(transactionLine => transactionLine.EngineerID);
-            builder.HasOne(transactionLine => transactionLine.ServiceTask).WithOne().HasForeignKey<TransactionLine>(transactionLine => transactionLine.ServiceTaskID);
+            builder.HasOne(transactionLine => transactionLine.Engineer).WithMany().HasForeignKey(transactionLine => transactionLine.EngineerID).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(transactionLine => transactionLine.ServiceTask).WithMany().HasForeignKey(transactionLine => transactionLine.ServiceTaskID).OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

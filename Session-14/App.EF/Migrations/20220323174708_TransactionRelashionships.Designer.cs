@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.EF.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20220323154956_AddRelashionshipsByConfiguration")]
-    partial class AddRelashionshipsByConfiguration
+    [Migration("20220323174708_TransactionRelashionships")]
+    partial class TransactionRelashionships
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -130,8 +130,7 @@ namespace App.EF.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ManagerID")
-                        .IsUnique();
+                    b.HasIndex("ManagerID");
 
                     b.ToTable("Engineers");
                 });
@@ -245,15 +244,15 @@ namespace App.EF.Migrations
 
                     b.HasIndex("TransactionID");
 
-                    b.ToTable("TransactionLines");
+                    b.ToTable("TransactionLine");
                 });
 
             modelBuilder.Entity("App.Models.Entities.Engineer", b =>
                 {
                     b.HasOne("App.Models.Entities.Manager", "Manager")
-                        .WithOne()
-                        .HasForeignKey("App.Models.Entities.Engineer", "ManagerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany()
+                        .HasForeignKey("ManagerID")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Manager");
@@ -264,19 +263,19 @@ namespace App.EF.Migrations
                     b.HasOne("App.Models.Entities.Car", "Car")
                         .WithMany()
                         .HasForeignKey("CarID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("App.Models.Entities.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("App.Models.Entities.Manager", "Manager")
                         .WithMany()
                         .HasForeignKey("ManagerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Car");

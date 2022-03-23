@@ -15,9 +15,10 @@ namespace App.EF.Configuration
         {
             builder.HasKey(transaction => transaction.ID);
 
-            builder.HasOne(transaction => transaction.Manager).WithOne().HasForeignKey<Transaction>(transaction => transaction.ManagerID);
-            builder.HasOne(transaction => transaction.Customer).WithOne().HasForeignKey<Transaction>(transaction => transaction.CustomerID);
-            builder.HasOne(transaction => transaction.Car).WithOne().HasForeignKey<Transaction>(transaction => transaction.CarID);
+            builder.HasMany(transaction => transaction.TransactionLines).WithOne().HasForeignKey(transactionLine => transactionLine.ID).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(transaction => transaction.Manager).WithMany().HasForeignKey(transaction => transaction.ManagerID).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(transaction => transaction.Customer).WithMany().HasForeignKey(transaction => transaction.CustomerID).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(transaction => transaction.Car).WithMany().HasForeignKey(transaction => transaction.CarID).OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

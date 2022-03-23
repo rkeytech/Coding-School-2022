@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace App.EF.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,22 +52,6 @@ namespace App.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Engineers",
-                columns: table => new
-                {
-                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ManagerID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    SallaryPerMonth = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Engineers", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Managers",
                 columns: table => new
                 {
@@ -96,6 +80,27 @@ namespace App.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Engineers",
+                columns: table => new
+                {
+                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ManagerID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    SallaryPerMonth = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Engineers", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Engineers_Managers_ManagerID",
+                        column: x => x.ManagerID,
+                        principalTable: "Managers",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Transactions",
                 columns: table => new
                 {
@@ -109,10 +114,28 @@ namespace App.EF.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Transactions", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Cars_CarID",
+                        column: x => x.CarID,
+                        principalTable: "Cars",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Customers_CustomerID",
+                        column: x => x.CustomerID,
+                        principalTable: "Customers",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Managers_ManagerID",
+                        column: x => x.ManagerID,
+                        principalTable: "Managers",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TransactionLines",
+                name: "TransactionLine",
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -124,9 +147,21 @@ namespace App.EF.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TransactionLines", x => x.ID);
+                    table.PrimaryKey("PK_TransactionLine", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_TransactionLines_Transactions_TransactionID",
+                        name: "FK_TransactionLine_Engineers_EngineerID",
+                        column: x => x.EngineerID,
+                        principalTable: "Engineers",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TransactionLine_ServiceTasks_ServiceTaskID",
+                        column: x => x.ServiceTaskID,
+                        principalTable: "ServiceTasks",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TransactionLine_Transactions_TransactionID",
                         column: x => x.TransactionID,
                         principalTable: "Transactions",
                         principalColumn: "ID",
@@ -134,36 +169,66 @@ namespace App.EF.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TransactionLines_TransactionID",
-                table: "TransactionLines",
+                name: "IX_Engineers_ManagerID",
+                table: "Engineers",
+                column: "ManagerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TransactionLine_EngineerID",
+                table: "TransactionLine",
+                column: "EngineerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TransactionLine_ServiceTaskID",
+                table: "TransactionLine",
+                column: "ServiceTaskID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TransactionLine_TransactionID",
+                table: "TransactionLine",
                 column: "TransactionID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_CarID",
+                table: "Transactions",
+                column: "CarID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_CustomerID",
+                table: "Transactions",
+                column: "CustomerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_ManagerID",
+                table: "Transactions",
+                column: "ManagerID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Cars");
-
-            migrationBuilder.DropTable(
                 name: "Credentials");
 
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "TransactionLine");
 
             migrationBuilder.DropTable(
                 name: "Engineers");
 
             migrationBuilder.DropTable(
-                name: "Managers");
-
-            migrationBuilder.DropTable(
                 name: "ServiceTasks");
 
             migrationBuilder.DropTable(
-                name: "TransactionLines");
+                name: "Transactions");
 
             migrationBuilder.DropTable(
-                name: "Transactions");
+                name: "Cars");
+
+            migrationBuilder.DropTable(
+                name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Managers");
         }
     }
 }

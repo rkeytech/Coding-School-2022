@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.EF.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20220322140452_Initial")]
-    partial class Initial
+    [Migration("20220323181359_TransactionLineRelashionships")]
+    partial class TransactionLineRelashionships
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -109,6 +109,7 @@ namespace App.EF.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("ManagerID")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -128,6 +129,8 @@ namespace App.EF.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("ManagerID");
 
                     b.ToTable("Engineers");
                 });
@@ -203,13 +206,18 @@ namespace App.EF.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("CarID");
+
+                    b.HasIndex("CustomerID");
+
+                    b.HasIndex("ManagerID");
+
                     b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("App.Models.Entities.TransactionLine", b =>
                 {
                     b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("EngineerID")
@@ -229,18 +237,84 @@ namespace App.EF.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("EngineerID");
+
+                    b.HasIndex("ServiceTaskID");
+
                     b.HasIndex("TransactionID");
 
-                    b.ToTable("TransactionLines");
+                    b.ToTable("TransactionLine");
+                });
+
+            modelBuilder.Entity("App.Models.Entities.Engineer", b =>
+                {
+                    b.HasOne("App.Models.Entities.Manager", "Manager")
+                        .WithMany()
+                        .HasForeignKey("ManagerID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Manager");
+                });
+
+            modelBuilder.Entity("App.Models.Entities.Transaction", b =>
+                {
+                    b.HasOne("App.Models.Entities.Car", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("App.Models.Entities.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("App.Models.Entities.Manager", "Manager")
+                        .WithMany()
+                        .HasForeignKey("ManagerID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Manager");
                 });
 
             modelBuilder.Entity("App.Models.Entities.TransactionLine", b =>
                 {
+                    b.HasOne("App.Models.Entities.Engineer", "Engineer")
+                        .WithMany()
+                        .HasForeignKey("EngineerID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("App.Models.Entities.Transaction", null)
                         .WithMany("TransactionLines")
+                        .HasForeignKey("ID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("App.Models.Entities.ServiceTask", "ServiceTask")
+                        .WithMany()
+                        .HasForeignKey("ServiceTaskID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("App.Models.Entities.Transaction", "Transaction")
+                        .WithMany()
                         .HasForeignKey("TransactionID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Engineer");
+
+                    b.Navigation("ServiceTask");
+
+                    b.Navigation("Transaction");
                 });
 
             modelBuilder.Entity("App.Models.Entities.Transaction", b =>
