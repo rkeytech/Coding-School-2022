@@ -22,8 +22,8 @@ namespace App.Models.EntitiesHandlers
         public void Delete(TransactionLine transactionLine, List<TransactionLine> transactionLines, CarService carService)
         {
             if (transactionLine != null)
-                carService.Engineers.FirstOrDefault(e => e.ID == transactionLine.EngineerID).Status = StatusEnum.Free;
-            transactionLines.Remove(transactionLine);
+        carService.Engineers.FirstOrDefault(e => e.ID == transactionLine.EngineerID).Status = StatusEnum.Free;
+    transactionLines.Remove(transactionLine);
         }
 
 

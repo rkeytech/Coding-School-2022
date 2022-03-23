@@ -10,12 +10,13 @@ namespace App.Models.Entities
     public class Engineer : Person
     {
         public Guid? ManagerID { get; set; }
+        public Manager Manager { get; set; }
         public decimal SallaryPerMonth { get; set; }
         public StatusEnum Status { get; set; }
 
         public Engineer()
         {
-
+            Manager = new Manager();
         }
 
     }

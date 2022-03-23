@@ -16,9 +16,16 @@ namespace App.Models.Entities
         public decimal PricePerHour { get; }
         public decimal Price { get; set; }
 
+        public Transaction Transaction { get; set; }
+        public ServiceTask ServiceTask { get; set; }
+        public Engineer Engineer { get; set; }
+
         public TransactionLine()
         {
             PricePerHour = 44.5m;
+            Transaction = new Transaction();
+            ServiceTask = new ServiceTask();
+            Engineer = new Engineer();
         }
 
     }

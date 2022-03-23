@@ -13,9 +13,12 @@ namespace App.EF.Configuration
     {
         public void Configure(EntityTypeBuilder<Engineer> builder)
         {
-            builder.HasKey(customer => customer.ID);
-            builder.Property(customer => customer.Name).HasMaxLength(50);
-            builder.Property(customer => customer.Surname).HasMaxLength(50);
+            builder.HasKey(engineer => engineer.ID);
+            builder.Property(engineer => engineer.Name).HasMaxLength(50);
+            builder.Property(engineer => engineer.Surname).HasMaxLength(50);
+            builder.Property(engineer => engineer.ManagerID).IsRequired(true);
+
+            builder.HasOne(engineer => engineer.Manager).WithOne().HasForeignKey<Engineer>(engineer => engineer.ManagerID);
         }
     }
 }

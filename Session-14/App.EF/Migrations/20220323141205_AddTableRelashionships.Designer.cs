@@ -4,6 +4,7 @@ using App.EF.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.EF.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20220323141205_AddTableRelashionships")]
+    partial class AddTableRelashionships
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,8 +130,7 @@ namespace App.EF.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ManagerID")
-                        .IsUnique();
+                    b.HasIndex("ManagerID");
 
                     b.ToTable("Engineers");
                 });
@@ -249,8 +250,8 @@ namespace App.EF.Migrations
             modelBuilder.Entity("App.Models.Entities.Engineer", b =>
                 {
                     b.HasOne("App.Models.Entities.Manager", "Manager")
-                        .WithOne()
-                        .HasForeignKey("App.Models.Entities.Engineer", "ManagerID")
+                        .WithMany()
+                        .HasForeignKey("ManagerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
