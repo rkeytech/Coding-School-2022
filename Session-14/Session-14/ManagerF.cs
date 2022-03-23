@@ -1,4 +1,5 @@
-﻿using App.Models.Entities;
+﻿using App.EF.Repository;
+using App.Models.Entities;
 using App.Models.EntitiesHandlers;
 using HelperFunctions;
 using System;
@@ -20,16 +21,19 @@ namespace Session_11
         private Manager _manager;
         private ManagerHandler _managerHandler;
         private StorageHelper _storageHelper;
-        public ManagerF(CarService carService)
+
+        private readonly IEntityRepo<Manager> _managerRepo;
+        public ManagerF(CarService carService, IEntityRepo<Manager> managerRepo)
         {
             
             InitializeComponent();
             _carService = carService;
             _managerHandler = new ManagerHandler();
             _storageHelper = new StorageHelper();
+            _managerRepo = managerRepo;
         }
 
-        public ManagerF(CarService carService, Manager manager) : this(carService)
+        public ManagerF(CarService carService, IEntityRepo<Manager> managerRepo, Manager manager) : this(carService, managerRepo)
         {
             _manager = manager;
         }
@@ -84,7 +88,7 @@ namespace Session_11
             if (_carService.Managers.FindAll(c => c.ID == _manager.ID).Count() <= 0)
             {
                 _carService.Managers.Add(_manager);
-                _storageHelper.SaveData(FILE_NAME, _carService);
+                _managerRepo.Create(_manager);
             }
             DialogResult = DialogResult.OK;
             Close();

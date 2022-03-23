@@ -1,4 +1,5 @@
-﻿using App.Models.Entities;
+﻿using App.EF.Repository;
+using App.Models.Entities;
 using App.Models.EntitiesHandlers;
 using HelperFunctions;
 using System;
@@ -21,13 +22,16 @@ namespace Session_11
         private StorageHelper _storageHelper;
         private ControlsHelper _controlsHelper;
 
-        public CustomersF(CarService carService)
+        private readonly IEntityRepo<Customer> _customerRepo;
+
+        public CustomersF(CarService carService, IEntityRepo<Customer> customerRepo)
         {
             InitializeComponent();
             _carService = carService;
             _customerHandler = new CustomerHandler();
             _storageHelper = new StorageHelper();
             _controlsHelper = new ControlsHelper();
+            _customerRepo = customerRepo;
         }
 
         private void CustomersF_Load(object sender, EventArgs e)
@@ -55,9 +59,8 @@ namespace Session_11
 
         private void Btnnew_Click(object sender, EventArgs e)
         {
-            var customers = bsCustomers.Current as Customer;
 
-            CustomerF customerF = new CustomerF(_carService);
+            CustomerF customerF = new CustomerF(_carService, _customerRepo);
             customerF.ShowDialog();
             gridView1.RefreshData();
         }
@@ -66,8 +69,9 @@ namespace Session_11
         {
             _customer = bsCustomers.Current as Customer;
 
-            CustomerF customerF = new CustomerF(_carService, _customer);
+            CustomerF customerF = new CustomerF(_carService, _customerRepo, _customer);
             customerF.ShowDialog();
+            _customerRepo.Update(_customer.ID, _customer);
             gridView1.RefreshData();
         }
 
@@ -76,7 +80,7 @@ namespace Session_11
 
             var customer = bsCustomers.Current as Customer;
             _customerHandler.Delete(customer, _carService.Customers);
-            _storageHelper.SaveData("storage.json", _carService);
+            _customerRepo.Delete(customer.ID);
             gridView1.RefreshData();
         }
 

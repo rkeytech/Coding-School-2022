@@ -1,4 +1,5 @@
-﻿using App.Models.Entities;
+﻿using App.EF.Repository;
+using App.Models.Entities;
 using App.Models.EntitiesHandlers;
 using HelperFunctions;
 using System;
@@ -22,13 +23,17 @@ namespace Session_11
         private ManagerHandler _managerHandler;
         private StorageHelper _storageHelper;
         private ControlsHelper _controlsHelper;
-        public ManagersF(CarService carService)
+
+        private readonly IEntityRepo<Manager> _managerRepo;
+
+        public ManagersF(CarService carService, IEntityRepo<Manager> managerRepo)
         {
             InitializeComponent();
             _carService = carService;
             _managerHandler = new ManagerHandler();
             _storageHelper = new StorageHelper();
             _controlsHelper = new ControlsHelper();
+            _managerRepo = managerRepo;
         }
 
         private void ManagersF_Load(object sender, EventArgs e)
@@ -57,9 +62,7 @@ namespace Session_11
 
         private void Btnnew_Click(object sender, EventArgs e)
         {
-            var managers = bsManagers.Current as Manager;
-
-            ManagerF managerF = new ManagerF(_carService);
+            ManagerF managerF = new ManagerF(_carService, _managerRepo);
             managerF.ShowDialog();
             gridView1.RefreshData();
         }
@@ -68,8 +71,9 @@ namespace Session_11
         {
             _manager = bsManagers.Current as Manager;
 
-            ManagerF managerF = new ManagerF(_carService, _manager);
+            ManagerF managerF = new ManagerF(_carService, _managerRepo, _manager);
             managerF.ShowDialog();
+            _managerRepo.Update(_manager.ID, _manager);
             gridView1.RefreshData();
         }
 
@@ -78,7 +82,7 @@ namespace Session_11
 
             var manager = bsManagers.Current as Manager;
             _managerHandler.Delete(manager, _carService.Managers, _carService);
-            _storageHelper.SaveData("storage.json", _carService);
+            _managerRepo.Delete(manager.ID);
             gridView1.RefreshData();
         }
 
