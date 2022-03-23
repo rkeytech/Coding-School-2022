@@ -1,6 +1,7 @@
 using App.EF.Repository;
 using App.Models.Entities;
 using Microsoft.Extensions.DependencyInjection;
+using Session_11;
 
 namespace Session_14
 {
@@ -21,10 +22,15 @@ namespace Session_14
 
             var services = new ServiceCollection();
             services.AddSingleton<IEntityRepo<Customer>, CustomerRepo>();
-            services.AddSingleton<Form1>();
+            services.AddSingleton<IEntityRepo<Car>, CarRepo>();
+            services.AddSingleton<IEntityRepo<Manager>, ManagerRepo>();
+            services.AddSingleton<IEntityRepo<Engineer>, EngineerRepo>();
+            services.AddSingleton<IEntityRepo<ServiceTask>, ServiceTaskRepo>();
+            services.AddSingleton<IEntityRepo<Transaction>, TransactionRepo>();
+            services.AddSingleton<CarCenter>();
 
             ServiceProvider = services.BuildServiceProvider();
-            var mainForm = ServiceProvider.GetRequiredService<Form1>();
+            var mainForm = ServiceProvider.GetRequiredService<CarCenter>();
             Application.Run(mainForm);
         }
     }

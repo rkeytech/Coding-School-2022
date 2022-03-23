@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.win", "Session-14\UI.win.csproj", "{3409EDF7-D976-4018-9F8C-D26965A3E6F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI.Win", "Session-14\UI.Win.csproj", "{3409EDF7-D976-4018-9F8C-D26965A3E6F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Models", "App.Models\App.Models.csproj", "{AF03DD37-377C-4D02-8112-F27E6725FF1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Models", "App.Models\App.Models.csproj", "{AF03DD37-377C-4D02-8112-F27E6725FF1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.EF", "App.EF\App.EF.csproj", "{139CA701-4B47-47AA-8AC0-EDC1F7C0E2EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.EF", "App.EF\App.EF.csproj", "{139CA701-4B47-47AA-8AC0-EDC1F7C0E2EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
