@@ -1,4 +1,5 @@
-﻿using App.Models.Entities;
+﻿using App.EF.Repository;
+using App.Models.Entities;
 using App.Models.EntitiesHandlers;
 using HelperFunctions;
 using System;
@@ -20,8 +21,10 @@ namespace Session_11
         private TransactionHandler _transactionHandler;
         private ControlsHelper _controlsHelper;
         private StorageHelper _storageHelper;
+
+        private readonly IEntityRepo<Transaction> _transactionRepo;
         
-        public TransactionsF(CarService carServise)
+        public TransactionsF(CarService carServise, IEntityRepo<Transaction> transactionRepo)
         {
             InitializeComponent();
             _carService = carServise;
@@ -29,6 +32,7 @@ namespace Session_11
             _transactionHandler = new TransactionHandler();
             _controlsHelper = new ControlsHelper();
             _storageHelper = new StorageHelper();
+            _transactionRepo = transactionRepo;
         }
 
         private void TransactionsF_Load(object sender, EventArgs e)

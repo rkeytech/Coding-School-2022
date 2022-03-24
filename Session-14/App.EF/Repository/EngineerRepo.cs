@@ -48,6 +48,7 @@ namespace App.EF.Repository
             foundEngineer.Name = entity.Name;
             foundEngineer.Surname = entity.Surname;
             foundEngineer.SallaryPerMonth = entity.SallaryPerMonth;
+            foundEngineer.ManagerID = entity.ManagerID;
             await context.SaveChangesAsync();
         }
     }

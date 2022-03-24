@@ -1,4 +1,5 @@
-﻿using App.Models.Entities;
+﻿using App.EF.Repository;
+using App.Models.Entities;
 using App.Models.EntitiesHandlers;
 using HelperFunctions;
 using System;
@@ -21,13 +22,16 @@ namespace Session_11
         private EngineerHandler _engineerHandler;
         private ControlsHelper _controlsHelper;
         private StorageHelper _storageHelper;
-        public EngineersF(CarService carService)
+
+        private readonly IEntityRepo<Engineer> _engineerRepo;
+        public EngineersF(CarService carService, IEntityRepo<Engineer> engineerRepo)
         {
             InitializeComponent();
             _carService = carService;
             _engineerHandler = new EngineerHandler();
             _controlsHelper = new ControlsHelper();
             _storageHelper = new StorageHelper();
+            _engineerRepo = engineerRepo;
         }
 
         private void EngineersF_Load(object sender, EventArgs e)
@@ -52,13 +56,12 @@ namespace Session_11
 
             GrdEngineers.DataSource = bsEngineers;
             _controlsHelper.HideColumns("ID", gridView1);
+            _controlsHelper.HideColumns("Manager", gridView1);
         }
 
         private void Btnnew_Click(object sender, EventArgs e)
         {
-            var engineers = bsEngineers.Current as Engineer;
-
-            EngineerF engineerF = new EngineerF(_carService);
+            EngineerF engineerF = new EngineerF(_carService, _engineerRepo);
             engineerF.ShowDialog();
             gridView1.RefreshData();
         }
@@ -67,8 +70,9 @@ namespace Session_11
         {
             _engineer = bsEngineers.Current as Engineer;
 
-            EngineerF engineerF = new EngineerF(_carService, _engineer);
+            EngineerF engineerF = new EngineerF(_carService, _engineerRepo, _engineer);
             engineerF.ShowDialog();
+            _engineerRepo.Update(_engineer.ID, _engineer);
             gridView1.RefreshData();
         }
 
@@ -76,7 +80,7 @@ namespace Session_11
         {
             var engineer = bsEngineers.Current as Engineer;
             _engineerHandler.Delete(engineer, _carService.Engineers);
-            _storageHelper.SaveData("storage.json", _carService);
+            _engineerRepo.Delete(engineer.ID);
             gridView1.RefreshData();
         }
 

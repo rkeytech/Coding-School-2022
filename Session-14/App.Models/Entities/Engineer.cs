@@ -16,7 +16,7 @@ namespace App.Models.Entities
 
         public Engineer()
         {
-            Manager = new Manager();
+
         }
 
     }

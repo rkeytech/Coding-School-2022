@@ -12,13 +12,22 @@ namespace App.Models.Entities
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string FullName { get; }
+        public string FullName
+        {
+            get
+            {
+                return $"{Name} {Surname}";
+            }
+            set
+            {
+                FullName = $"{Name} {Surname}";
+            }
+        }
 
         public Person()
         {
             Name = string.Empty;
             Surname = string.Empty;
-            FullName = $"{Name} {Surname}";
         }
     }
 }

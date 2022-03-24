@@ -1,4 +1,5 @@
-﻿using App.Models.Entities;
+﻿using App.EF.Repository;
+using App.Models.Entities;
 using App.Models.EntitiesHandlers;
 using HelperFunctions;
 using System;
@@ -21,15 +22,18 @@ namespace Session_11
         private EngineerHandler _engineerHandler;
         private StorageHelper _storageHelper;
 
-        public EngineerF(CarService carService)
+        private readonly IEntityRepo<Engineer> _engineerRepo;
+
+        public EngineerF(CarService carService, IEntityRepo<Engineer> engineerRepo)
         {
             InitializeComponent();
             _carService = carService;
             _engineerHandler = new EngineerHandler();
             _storageHelper = new StorageHelper();
+            _engineerRepo = engineerRepo;
         }
 
-        public EngineerF(CarService carService, Engineer engineer) : this(carService)
+        public EngineerF(CarService carService, IEntityRepo<Engineer> engineerRepo, Engineer engineer) : this(carService, engineerRepo)
         {
             _engineer = engineer;
         }
@@ -53,7 +57,7 @@ namespace Session_11
             if (_carService.Engineers.FindAll(c => c.ID == _engineer.ID).Count() <= 0)
             {
                 _carService.Engineers.Add(_engineer);
-                _storageHelper.SaveData(FILE_NAME, _carService);
+                _engineerRepo.Create(_engineer);
             }
             DialogResult = DialogResult.OK;
             Close();

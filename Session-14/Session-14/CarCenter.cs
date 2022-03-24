@@ -77,7 +77,7 @@ namespace Session_11
 
         private void buttonTransShow_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ShowForm(new TransactionsF(_carService));
+            ShowForm(new TransactionsF(_carService, _transactionRepo));
         }
         private void buttonManagers_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -95,7 +95,7 @@ namespace Session_11
 
         private void buttonEngineers_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ShowForm(new EngineersF(_carService));
+            ShowForm(new EngineersF(_carService, _engineerRepo));
         }
 
         private void buttonCars_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
