@@ -12,22 +12,22 @@ namespace App.Models.Entities
     {
         public DateTime Date { get; set; }
         public Guid CustomerID { get; set; }
+        public Customer Customer { get; set; }
         public Guid CarID { get; set; }
+        public Car Car { get; set; }
         public Guid ManagerID { get; set; }
+        public Manager Manager { get; set; }
         public decimal TotalPrice { get; set; }
         public List<TransactionLine> TransactionLines { get; set; }
 
-        public Car Car { get; set; }
-        public Manager Manager { get; set; }
-        public Customer Customer { get; set; }
+        
+        
+        
 
 
         public Transaction()
         {
             TransactionLines = new List<TransactionLine>();
-            Manager = new Manager();
-            Car = new Car();
-            Customer = new Customer();
             Date = DateTime.Now;
         }
     }

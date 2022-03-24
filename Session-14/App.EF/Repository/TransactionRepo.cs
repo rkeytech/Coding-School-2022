@@ -43,12 +43,13 @@ namespace App.EF.Repository
         public async Task Update(Guid id, Transaction entity)
         {
             using var context = new MyAppContext();
-            var foundTransaction = context.Transactions.SingleOrDefault(transaction => transaction.ID == id);
+            var foundTransaction = context.Transactions.Include(transaction => transaction.TransactionLines).SingleOrDefault(transaction => transaction.ID == id);
             if (foundTransaction is null)
                 return;
             foundTransaction.CarID = entity.CarID;
             foundTransaction.ManagerID = entity.ManagerID;
             foundTransaction.CustomerID = entity.CustomerID;
+            foundTransaction.TransactionLines = entity.TransactionLines;
             await context.SaveChangesAsync();
         }
     }

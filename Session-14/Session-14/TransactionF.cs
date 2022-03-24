@@ -1,4 +1,5 @@
-﻿using App.Models;
+﻿using App.EF.Repository;
+using App.Models;
 using App.Models.Entities;
 using App.Models.EntitiesHandlers;
 using HelperFunctions;
@@ -25,20 +26,23 @@ namespace Session_11
         private MessagesHelper _messagesHelper;
         private ControlsHelper _controlsHelper;
 
-        public TransactionF(CarService carService)
+        private readonly IEntityRepo<Transaction> _transactionRepo;
+
+        public TransactionF(CarService carService, IEntityRepo<Transaction> transactionRepo)
         {
             InitializeComponent();
             _carService = carService;
             _transactionHandler = new TransactionHandler();
             _storageHelper = new StorageHelper();
-            _transaction = new Transaction();
             _messagesHelper = new MessagesHelper();
             _transactionLineHandler = new TransactionLineHandler();
             _controlsHelper = new ControlsHelper();
+            _transactionRepo = transactionRepo;
+            _transaction = new Transaction();
         }
 
 
-        public TransactionF(CarService carService, Transaction transaction) : this(carService)
+        public TransactionF(CarService carService, IEntityRepo<Transaction> transactionRepo, Transaction transaction) : this(carService, transactionRepo)
         {
             _transaction = transaction;
         }
@@ -107,6 +111,8 @@ namespace Session_11
             _controlsHelper.SetColumn(colEngineerID, grvTransLines, "EngineerID");
             _controlsHelper.HideColumns("TransactionID", grvTransLines);
             _controlsHelper.HideColumns("ID", grvTransLines);
+            _controlsHelper.HideColumns("ServiceTask", grvTransLines);
+            _controlsHelper.HideColumns("Engineer", grvTransLines);
         }
 
         private void SaveTransaction()
@@ -115,7 +121,7 @@ namespace Session_11
             {
                 _transaction.TotalPrice = _transactionHandler.GetTransactionPrice(_transaction);
                 _carService.Transactions.Add(_transaction);
-                _storageHelper.SaveData(FILE_NAME, _carService);
+                _transactionRepo.Create(_transaction);
             }
             DialogResult = DialogResult.OK;
             Close();
@@ -127,8 +133,8 @@ namespace Session_11
             {
                 var form = new TransactionLineF(_transaction, _carService);
                 form.ShowDialog();
-                grvTransLines.RefreshData();
                 Ctrltotalprice.EditValue = _transactionHandler.GetTransactionPrice(_transaction);
+                grvTransLines.RefreshData();
 
             }
             else

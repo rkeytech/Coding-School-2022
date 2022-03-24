@@ -16,9 +16,9 @@ namespace App.EF.Configuration
             builder.HasKey(transaction => transaction.ID);
 
             builder.HasMany(transaction => transaction.TransactionLines).WithOne().HasForeignKey(transactionLine => transactionLine.ID).OnDelete(DeleteBehavior.NoAction);
-            builder.HasOne(transaction => transaction.Manager).WithMany().HasForeignKey(transaction => transaction.ManagerID).OnDelete(DeleteBehavior.NoAction);
-            builder.HasOne(transaction => transaction.Customer).WithMany().HasForeignKey(transaction => transaction.CustomerID).OnDelete(DeleteBehavior.NoAction);
-            builder.HasOne(transaction => transaction.Car).WithMany().HasForeignKey(transaction => transaction.CarID).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(transaction => transaction.Manager).WithMany().HasForeignKey(transaction => transaction.ManagerID).OnDelete(DeleteBehavior.NoAction).IsRequired();
+            builder.HasOne(transaction => transaction.Customer).WithMany().HasForeignKey(transaction => transaction.CustomerID).OnDelete(DeleteBehavior.NoAction).IsRequired();
+            builder.HasOne(transaction => transaction.Car).WithMany().HasForeignKey(transaction => transaction.CarID).OnDelete(DeleteBehavior.NoAction).IsRequired();
         }
     }
 }

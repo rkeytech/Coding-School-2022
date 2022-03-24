@@ -61,12 +61,15 @@ namespace Session_11
             bsTransactions.DataMember = "Transactions";
             GrdTransactions.DataSource = bsTransactions;
 
-            _controlsHelper.HideColumns("ID", gridView1);   
+            _controlsHelper.HideColumns("ID", gridView1);
+            _controlsHelper.HideColumns("Manager", gridView1);
+            _controlsHelper.HideColumns("Car", gridView1);
+            _controlsHelper.HideColumns("Customer", gridView1);
         }
 
         private void Btnnew_Click(object sender, EventArgs e)
         {
-            TransactionF transactionF = new TransactionF(_carService);
+            TransactionF transactionF = new TransactionF(_carService, _transactionRepo);
             transactionF.ShowDialog();
             gridView1.RefreshData();
 
@@ -85,7 +88,7 @@ namespace Session_11
         {
             var transaction = bsTransactions.Current as Transaction;
             _transactionHandler.Delete(transaction, _carService.Transactions);
-            _storageHelper.SaveData("storage.json", _carService);
+            _transactionRepo.Delete(transaction.ID);
             gridView1.RefreshData();
         }
 

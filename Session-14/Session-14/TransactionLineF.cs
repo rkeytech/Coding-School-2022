@@ -16,12 +16,10 @@ namespace Session_11
 {
     public partial class TransactionLineF : Form
     {
-        private const string FILE_NAME = "storage.json";
         private Transaction _transaction;
         private TransactionLine _transactionLine;
         private TransactionLineHandler _transactionLineHandler;
         private TransactionHandler _transactionHandler;
-        private StorageHelper _storageHelper;
         private ControlsHelper _controlsHelper;
         private CarService _carService;
         private CarServiceHandler _carServiceHandler;
@@ -31,12 +29,10 @@ namespace Session_11
             InitializeComponent();
             _transaction = transaction;
             _transactionLineHandler = new TransactionLineHandler();
-            _storageHelper = new StorageHelper();
             _controlsHelper = new ControlsHelper();
             _carService = carService;
             _transactionHandler = new TransactionHandler();
             _carServiceHandler = new CarServiceHandler();
-            _transactionLine = new TransactionLine();
         }
 
 
@@ -49,6 +45,8 @@ namespace Session_11
             if (_transactionLine == null)
             {
                 _transactionLine = (TransactionLine)_transactionLineHandler.Create();
+                _transactionLine.TransactionID = _transaction.ID;
+
             }
             bsTransactionLine.DataSource = _transactionLine;
 
