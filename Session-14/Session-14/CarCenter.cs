@@ -85,7 +85,7 @@ namespace Session_11
         }
         private void buttonServiceTask_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ShowForm(new ServiceTasksF(_carService));
+            ShowForm(new ServiceTasksF(_carService, _serviceTaskRepo));
         }
 
         private void buttonCustomers_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

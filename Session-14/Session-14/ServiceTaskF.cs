@@ -1,4 +1,5 @@
-﻿using App.Models.Entities;
+﻿using App.EF.Repository;
+using App.Models.Entities;
 using App.Models.EntitiesHandlers;
 using HelperFunctions;
 using System;
@@ -21,15 +22,18 @@ namespace Session_11
         private ServiceTaskHandler _serviceTaskHandler;
         private StorageHelper _storageHelper;
 
-        public ServiceTaskF(CarService carService)
+        private readonly IEntityRepo<ServiceTask> _serviceTaskRepo;
+
+        public ServiceTaskF(CarService carService, IEntityRepo<ServiceTask> serviceTaskRepo)
         {
             InitializeComponent();
             _carService = carService;
             _storageHelper= new StorageHelper();
             _serviceTaskHandler = new ServiceTaskHandler();
+            _serviceTaskRepo = serviceTaskRepo;
         }
 
-        public ServiceTaskF(CarService carService, ServiceTask service) : this(carService)
+        public ServiceTaskF(CarService carService, IEntityRepo<ServiceTask> serviceTaskRepo, ServiceTask service) : this(carService, serviceTaskRepo)
         {
             _serviceTask = service;
         }
@@ -88,7 +92,7 @@ namespace Session_11
             if (_carService.ServiceTasks.FindAll(c => c.ID == _serviceTask.ID).Count() <= 0)
             {
                 _carService.ServiceTasks.Add(_serviceTask);
-                _storageHelper.SaveData(FILE_NAME, _carService);
+                _serviceTaskRepo.Create(_serviceTask);
             }
             DialogResult = DialogResult.OK;
             Close();

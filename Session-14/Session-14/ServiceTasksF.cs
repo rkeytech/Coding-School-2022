@@ -1,4 +1,5 @@
-﻿using App.Models.Entities;
+﻿using App.EF.Repository;
+using App.Models.Entities;
 using App.Models.EntitiesHandlers;
 using HelperFunctions;
 using System;
@@ -21,7 +22,9 @@ namespace Session_11
         private StorageHelper _storageHelper;
         private ControlsHelper _controlsHelper;
 
-        public ServiceTasksF(CarService carService)
+        private readonly IEntityRepo<ServiceTask> _serviceTaskRepo;
+
+        public ServiceTasksF(CarService carService, IEntityRepo<ServiceTask> serviceTaskRepo)
         {
             InitializeComponent();
             _carService = carService;
@@ -29,6 +32,7 @@ namespace Session_11
             _serviceTaskHandler = new ServiceTaskHandler();
             _storageHelper = new StorageHelper();
             _controlsHelper = new ControlsHelper();
+            _serviceTaskRepo = serviceTaskRepo;
         }
 
         private void ServiceTaskF_Load(object sender, EventArgs e)
@@ -49,7 +53,7 @@ namespace Session_11
 
         private void Btnnew_Click(object sender, EventArgs e)
         {
-            ServiceTaskF serviceTaskF = new ServiceTaskF(_carService);
+            ServiceTaskF serviceTaskF = new ServiceTaskF(_carService, _serviceTaskRepo);
             serviceTaskF.ShowDialog();
             gridView1.RefreshData();
 
@@ -59,7 +63,8 @@ namespace Session_11
         {
             _selectedServiceTask = bsServiceTasks.Current as ServiceTask;
 
-            ServiceTaskF serviceTaskF = new ServiceTaskF(_carService, _selectedServiceTask);
+            ServiceTaskF serviceTaskF = new ServiceTaskF(_carService, _serviceTaskRepo, _selectedServiceTask);
+            _serviceTaskRepo.Update(_selectedServiceTask.ID, _selectedServiceTask);
             serviceTaskF.ShowDialog();
             gridView1.RefreshData();
         }
@@ -68,7 +73,7 @@ namespace Session_11
         {
             var serviceTask = bsServiceTasks.Current as ServiceTask;
             _serviceTaskHandler.Delete(serviceTask, _carService.ServiceTasks);
-            _storageHelper.SaveData("storage.json", _carService);
+            _serviceTaskRepo.Delete(serviceTask.ID);
             gridView1.RefreshData();
         }
 
