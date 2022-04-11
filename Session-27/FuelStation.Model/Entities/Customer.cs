@@ -10,6 +10,9 @@ namespace FuelStation.Model.Entities
     {
         public string CardNumber { get; set; }
 
+        // Entity Framework Navigation Objects
+        public List<Transaction>? Transactions { get; set; }
+
         public Customer()
         {
             CardNumber = string.Empty;
