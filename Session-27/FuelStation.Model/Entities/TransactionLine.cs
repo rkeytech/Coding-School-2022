@@ -10,7 +10,7 @@ namespace FuelStation.Model.Entities
     {
         public uint TransactionID { get; set; }
         public uint ItemID { get; set; }
-        public uint Quantity { get; set; }
+        public double Quantity { get; set; }
         public double ItemPrice { get; set; }
         public double NetValue { get; set; }
         public float DiscountPercent { get; set; }
