@@ -15,7 +15,7 @@ namespace FuelStation.Model.Entities
 
         public Customer()
         {
-            CardNumber = string.Empty;
+            
         }
     }
 }

@@ -19,6 +19,6 @@ namespace FuelStation.Blazor.Shared
         public uint ID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string CardNumber { get; set; }
+        public string CardNumber { get; set; } = $"A{Guid.NewGuid().ToString().Substring(0, 8)}";
     }
 }
