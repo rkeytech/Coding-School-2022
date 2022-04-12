@@ -35,7 +35,10 @@ namespace FuelStation.Blazor.Server.Controllers
         [HttpGet("{id}")]
         public async Task<EmployeeEditViewModel> Get(uint id)
         {
-            EmployeeEditViewModel viewmodel = new EmployeeEditViewModel();
+            EmployeeEditViewModel viewmodel = new EmployeeEditViewModel()
+            {
+                HireDateStart = DateTime.Now,
+            };
             if (id != 0)
             {
                 var foundEmployee = await _employeeRepo.GetByIdAsync(id);
