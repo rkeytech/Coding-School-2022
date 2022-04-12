@@ -28,11 +28,16 @@ namespace FuelStation.Model.Handlers
             return netValue * discountPercent;
         }
 
-        public double CalculateTotalValue(double discountValue, double netValue)
+        public double CalculateLineTotalValue(double discountValue, double netValue)
         {
             if (discountValue < 0) throw new ArgumentException("Discount value must not be a negative value");
             if (netValue <= 0) throw new ArgumentException("Net Value must be a non zero positive value");
             return netValue - discountValue;
+        }
+        
+        public double CalculateTransactionTotalValue(List<double> linesTotalValues)
+        {
+            return linesTotalValues.Sum();
         }
 
         public double ApplyTenPercentDiscount(double netValue, double totalValue)

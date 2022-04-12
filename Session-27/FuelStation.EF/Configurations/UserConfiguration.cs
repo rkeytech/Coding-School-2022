@@ -18,6 +18,10 @@ namespace FuelStation.EF.Configurations
 
             builder.Property(customer => customer.Username).HasMaxLength(maxLength: 50);
             builder.Property(customer => customer.Password).HasMaxLength(maxLength: 50);
+
+            builder.HasOne(employee => employee.Employee).WithOne()
+                   .HasForeignKey<User>(user => user.EmployeeID)
+                   .IsRequired(true);
         }
     }
 }

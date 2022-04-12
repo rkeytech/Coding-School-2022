@@ -11,6 +11,10 @@ namespace FuelStation.Model.Entities
         public string Username { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
+        public uint EmployeeID { get; set; }
+
+        // Entity Framework Navigation Objects
+        public Employee Employee { get; set; }
 
         public User()
         {

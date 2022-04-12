@@ -1,6 +1,7 @@
 using FuelStation.EF.Contexts;
 using FuelStation.EF.Repositories;
 using FuelStation.Model.Entities;
+using FuelStation.Model.Handlers;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ builder.Services.AddScoped<IEntityRepo<Employee>, EmployeeRepo>();
 builder.Services.AddScoped<IEntityRepo<Item>, ItemRepo>();
 builder.Services.AddScoped<IEntityRepo<User>, UserRepo>();
 builder.Services.AddScoped<IEntityRepo<Transaction>, TransactionRepo>();
+builder.Services.AddScoped<TransactionHandler>();
 
 var app = builder.Build();
 
