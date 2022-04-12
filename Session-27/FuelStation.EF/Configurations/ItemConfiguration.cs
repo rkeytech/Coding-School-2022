@@ -13,13 +13,13 @@ namespace FuelStation.EF.Configurations
     {
         public void Configure(EntityTypeBuilder<Item> builder)
         {
-            builder.HasKey(employee => employee.ID);
-            builder.Property(employee => employee.ID).ValueGeneratedOnAdd();
+            builder.HasKey(item => item.ID);
+            builder.Property(item => item.ID).ValueGeneratedOnAdd();
 
-            builder.Property(employee => employee.Code).HasMaxLength(maxLength: 50);
-            builder.Property(employee => employee.Description).HasMaxLength(maxLength: 250);
-            builder.Property(employee => employee.Cost).HasPrecision(10, 2);
-            builder.Property(employee => employee.Price).HasPrecision(10, 2);
+            builder.Property(item => item.Code).HasMaxLength(maxLength: 50);
+            builder.Property(item => item.Description).HasMaxLength(maxLength: 250);
+            builder.Property(item => item.Cost).HasColumnType("decimal(10,3)");
+            builder.Property(item => item.Price).HasColumnType("decimal(10,3)");
         }
     }
 }

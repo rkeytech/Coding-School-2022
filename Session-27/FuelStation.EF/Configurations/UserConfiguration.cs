@@ -13,11 +13,11 @@ namespace FuelStation.EF.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasKey(customer => customer.ID);
-            builder.Property(customer => customer.ID).ValueGeneratedOnAdd();
+            builder.HasKey(user => user.ID);
+            builder.Property(user => user.ID).ValueGeneratedOnAdd();
 
-            builder.Property(customer => customer.Username).HasMaxLength(maxLength: 50);
-            builder.Property(customer => customer.Password).HasMaxLength(maxLength: 50);
+            builder.Property(user => user.Username).HasMaxLength(maxLength: 50);
+            builder.Property(user => user.Password).HasMaxLength(maxLength: 50);
 
             builder.HasOne(employee => employee.Employee).WithOne()
                    .HasForeignKey<User>(user => user.EmployeeID)

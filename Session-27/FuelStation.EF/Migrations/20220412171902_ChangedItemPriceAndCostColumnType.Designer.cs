@@ -4,6 +4,7 @@ using FuelStation.EF.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FuelStation.EF.Migrations
 {
     [DbContext(typeof(FuelStationContext))]
-    partial class FuelStationContextModelSnapshot : ModelSnapshot
+    [Migration("20220412171902_ChangedItemPriceAndCostColumnType")]
+    partial class ChangedItemPriceAndCostColumnType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,7 +105,7 @@ namespace FuelStation.EF.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(10,3)");
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -114,7 +116,7 @@ namespace FuelStation.EF.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(10,3)");
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("ID");
 
@@ -141,8 +143,9 @@ namespace FuelStation.EF.Migrations
                     b.Property<int>("PaymentMethod")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalValue")
-                        .HasColumnType("decimal(10,3)");
+                    b.Property<double>("TotalValue")
+                        .HasPrecision(15, 2)
+                        .HasColumnType("float(15)");
 
                     b.HasKey("ID");
 
@@ -161,26 +164,26 @@ namespace FuelStation.EF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"), 1L, 1);
 
-                    b.Property<decimal>("DiscountPercent")
-                        .HasColumnType("decimal(6,2)");
+                    b.Property<float>("DiscountPercent")
+                        .HasColumnType("real");
 
-                    b.Property<decimal>("DiscountValue")
-                        .HasColumnType("decimal(10,3)");
+                    b.Property<double>("DiscountValue")
+                        .HasColumnType("float");
 
                     b.Property<long>("ItemID")
                         .HasColumnType("bigint");
 
-                    b.Property<decimal>("ItemPrice")
-                        .HasColumnType("decimal(10,3)");
+                    b.Property<double>("ItemPrice")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("NetValue")
-                        .HasColumnType("decimal(10,3)");
+                    b.Property<double>("NetValue")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("Quantity")
-                        .HasColumnType("decimal(10,3)");
+                    b.Property<double>("Quantity")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("TotalValue")
-                        .HasColumnType("decimal(10,3)");
+                    b.Property<double>("TotalValue")
+                        .HasColumnType("float");
 
                     b.Property<long>("TransactionID")
                         .HasColumnType("bigint");

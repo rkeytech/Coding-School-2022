@@ -61,7 +61,7 @@ else
         customers = await httpClient.GetFromJsonAsync<List<CustomerListViewModel>>("customer");
     }
 
-    protected async Task AddItem()
+    protected void AddItem()
     {
         navManager.NavigateTo("/customers/edit");
     }
@@ -73,7 +73,7 @@ else
         await LoadItemsFromServer();
     }
 
-    protected async Task EditItem(CustomerListViewModel customer)
+    protected void EditItem(CustomerListViewModel customer)
     {
         navManager.NavigateTo($"/customers/edit/{customer.ID}");
     }

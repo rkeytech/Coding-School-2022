@@ -13,10 +13,10 @@ namespace FuelStation.EF.Configurations
     {
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {
-            builder.HasKey(employee => employee.ID);
-            builder.Property(employee => employee.ID).ValueGeneratedOnAdd();
+            builder.HasKey(transaction => transaction.ID);
+            builder.Property(transaction => transaction.ID).ValueGeneratedOnAdd();
 
-            builder.Property(employee => employee.TotalValue).HasPrecision(15, 2);
+            builder.Property(transaction => transaction.TotalValue).HasColumnType("decimal(10,3)");
 
             builder.HasMany(transaction => transaction.TransactionLines)
                    .WithOne(transactionLine => transactionLine.Transaction)
