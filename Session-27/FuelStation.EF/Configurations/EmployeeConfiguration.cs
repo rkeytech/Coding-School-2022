@@ -19,6 +19,8 @@ namespace FuelStation.EF.Configurations
             builder.Property(employee => employee.Name).HasMaxLength(maxLength: 250);
             builder.Property(employee => employee.Surname).HasMaxLength(maxLength: 250);
             builder.Property(employee => employee.SalaryPerMonth).HasColumnType("decimal(10,2)");
+            builder.Property(employee => employee.HireDateStart).HasColumnType("date");
+            builder.Property(employee => employee.HireDateEnd).HasColumnType("date").IsRequired(false);
         }
     }
 }

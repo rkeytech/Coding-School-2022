@@ -39,8 +39,13 @@ else
                         <td>@employee.Name</td>
                         <td>@employee.EmployeeType</td>
                         <td>@employee.SalaryPerMonth</td>
-                        <td>@employee.HireDateStart</td>
-                        <td>@employee.HireDateEnd</td>
+                        <td>@DateOnly.FromDateTime(employee.HireDateStart)</td>
+                        <td>
+                            @if (employee.HireDateEnd is not null)
+                            {
+                                @DateOnly.FromDateTime((DateTime)employee.HireDateEnd)
+                            }
+                        </td>
                         <td>
                             <button class="btn btn-warning text-primary" @onclick="() => EditItem(employee)">Edit</button>
                             <button class="btn btn-danger text-primary" @onclick="() => DeleteItem(employee)">Delete</button>

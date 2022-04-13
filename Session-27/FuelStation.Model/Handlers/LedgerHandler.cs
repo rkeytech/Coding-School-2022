@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FuelStation.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,14 +14,24 @@ namespace FuelStation.Model.Handlers
 
         }
 
-        public double GetIncome()
+        public double GetIncome(List<double> transactions)
         {
-            return 0;
+            return transactions.Sum();
         }
 
-        public double GetExpenses()
-        {
-            return 0;
+        public double GetExpenses(List<Employee> employees, List<Transaction> transactions, double rent)
+        { 
+            double productsCosts = 0;
+            double salaries = 0;
+
+            foreach (var transaction in transactions)
+            {
+                productsCosts += transaction.TransactionLines.Select(x => x.Item.Cost).Sum();
+            }
+
+            salaries += employees.Select(x => x.SalaryPerMonth).Sum();
+
+            return productsCosts + salaries + rent;
         }
     }
 }
