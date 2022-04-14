@@ -24,12 +24,12 @@ namespace FuelStation.Blazor.Server.Controllers
             _ledgerHandler = ledgerHandler;
         }
 
-        [HttpPost("auth")]
-        public async Task<UserAuthenticatedViewModel> Post(UserToAuthViewModel user)
+        [HttpGet("auth/{username}/{password}")]
+        public async Task<UserAuthenticatedViewModel> Get(string username, string password)
         {
             var users = await _userRepo.GetAllAsync();
-            var foundUser = users.SingleOrDefault(u => u.Username == user.Username && 
-                                                      u.Password == user.Password);
+            var foundUser = users.SingleOrDefault(u => u.Username == username && 
+                                                      u.Password == password);
             if (foundUser is not null)
             {
                 return new UserAuthenticatedViewModel()
@@ -38,7 +38,13 @@ namespace FuelStation.Blazor.Server.Controllers
                     EmployeeType = foundUser.Employee.EmployeeType
                 };
             }
-            return new UserAuthenticatedViewModel();
+            return new UserAuthenticatedViewModel()
+            {
+                Messages = new List<string>
+                {
+                    "Username or password don't match. Please try again."
+                }
+            };
         }
         
         [HttpGet("ledger/{year}/{month}")]

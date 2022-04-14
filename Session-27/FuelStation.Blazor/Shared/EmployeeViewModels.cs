@@ -27,5 +27,6 @@ namespace FuelStation.Blazor.Shared
         public EmployeeTypeEnum EmployeeType { get; set; }
         public DateTime HireDateStart { get; set; }
         public DateTime? HireDateEnd { get; set; }
+        public List<string> Messages { get; set; } = new();
     }
 }

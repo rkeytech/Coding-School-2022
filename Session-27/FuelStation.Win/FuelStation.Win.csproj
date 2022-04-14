@@ -19,4 +19,8 @@
     <ProjectReference Include="..\FuelStation.Blazor\Shared\FuelStation.Blazor.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="HelperFunctions\" />
+  </ItemGroup>
+
 </Project>

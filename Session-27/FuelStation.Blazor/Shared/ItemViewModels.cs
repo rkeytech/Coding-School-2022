@@ -25,5 +25,7 @@ namespace FuelStation.Blazor.Shared
         public ItemTypeEnum ItemType { get; set; }
         public double Cost { get; set; }
         public double Price { get; set; }
+        public List<string> Messages { get; set; } = new();
+
     }
 }

@@ -37,7 +37,7 @@ namespace FuelStation.EF.Repositories
 
         public async Task<IEnumerable<User>> GetAllAsync()
         {
-            return await _context.Users.AsNoTracking().ToListAsync();
+            return await _context.Users.AsNoTracking().Include(user => user.Employee).ToListAsync();
         }
 
         public async Task<User> GetByIdAsync(uint id)

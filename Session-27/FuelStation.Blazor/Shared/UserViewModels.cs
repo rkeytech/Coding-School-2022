@@ -7,14 +7,10 @@ using System.Threading.Tasks;
 
 namespace FuelStation.Blazor.Shared
 {
-    } public class UserToAuthViewModel
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
-    }
-
     public class UserAuthenticatedViewModel
     {
         public string? Username { get; set; }
         public EmployeeTypeEnum? EmployeeType { get; set; }
+        public List<string> Messages { get; set; } = new();
+    }
 }

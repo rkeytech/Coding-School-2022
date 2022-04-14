@@ -22,5 +22,7 @@ namespace FuelStation.Blazor.Shared
         public uint ItemID { get; set; }
         public double Quantity { get; set; }
         public float DiscountPercent { get; set; }
+        public List<string> Messages { get; set; } = new();
+
     }
 }
