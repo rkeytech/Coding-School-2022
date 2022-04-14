@@ -44,6 +44,21 @@ namespace FuelStation.Blazor.Server.Controllers
             return viewmodel;
         }
         
+        [HttpGet("card/{cardNumber}")]
+        public async Task<CustomerEditViewModel> Get(string cardNumber)
+        {
+            CustomerEditViewModel viewmodel = new CustomerEditViewModel();
+            if (!string.IsNullOrEmpty(cardNumber))
+            {
+                var foundCustomer = await _customerRepo.GetByAttrAsync(cardNumber);
+                viewmodel.ID = foundCustomer.ID;
+                viewmodel.Name = foundCustomer.Name;
+                viewmodel.Surname = foundCustomer.Surname;
+                viewmodel.CardNumber = foundCustomer.CardNumber;
+            }
+            return viewmodel;
+        }
+        
         [HttpPost]
         public async Task Post(CustomerEditViewModel customer)
         {

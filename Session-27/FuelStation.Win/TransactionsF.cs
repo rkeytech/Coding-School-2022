@@ -23,7 +23,7 @@ namespace FuelStation.Win
             _httpClient = httpClient;
         }
 
-        private async Task PopulateTransactions()
+        private async void PopulateTransactions()
         {
             _transactions = await _httpClient.GetFromJsonAsync<List<TransactionListViewModel>>("transaction");
 
@@ -34,26 +34,26 @@ namespace FuelStation.Win
             grdTransactions.Columns["ID"].Visible = false;
         }
 
-        private async void TransactionsF_Load(object sender, EventArgs e)
+        private void TransactionsF_Load(object sender, EventArgs e)
         {
-            await PopulateTransactions();
+            PopulateTransactions();
         }
 
-        private async void btnAddTransaction_Click(object sender, EventArgs e)
+        private void btnAddTransaction_Click(object sender, EventArgs e)
         {
             Form form = new TransactionF(_httpClient);
             form.ShowDialog();
-            await PopulateTransactions();
+            PopulateTransactions();
         }
 
-        private async void btnEditTransaction_Click(object sender, EventArgs e)
+        private void btnEditTransaction_Click(object sender, EventArgs e)
         {
             var selectedTransaction = bsTransactions.Current as TransactionListViewModel;
             if (selectedTransaction is null)
                 return;
             Form form = new TransactionF(_httpClient, selectedTransaction.ID);
             form.ShowDialog();
-            await PopulateTransactions();
+            PopulateTransactions();
         }
 
         private async void btnDeleteTransaction_Click(object sender, EventArgs e)
@@ -62,9 +62,9 @@ namespace FuelStation.Win
             if (selectedTransaction is null)
                 return;
             HttpResponseMessage response;
-            response = await _httpClient.DeleteAsync($"customer/{selectedTransaction.ID}");
+            response = await _httpClient.DeleteAsync($"transaction/{selectedTransaction.ID}");
             response.EnsureSuccessStatusCode();
-            await PopulateTransactions();
+            PopulateTransactions();
         }
     }
 }

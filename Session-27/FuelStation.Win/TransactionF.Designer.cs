@@ -33,7 +33,7 @@
             this.grdTransactionLines = new System.Windows.Forms.DataGridView();
             this.btnCancelTransaction = new System.Windows.Forms.Button();
             this.btnSaveTransaction = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAddTransactionLine = new System.Windows.Forms.Button();
             this.ctrlTransactionTotalValue = new System.Windows.Forms.NumericUpDown();
             this.ctrlTransactionEmployee = new System.Windows.Forms.ComboBox();
             this.lblTransactionTotalValue = new System.Windows.Forms.Label();
@@ -47,6 +47,7 @@
             this.lblTransactionCustomer = new System.Windows.Forms.Label();
             this.ctrlPaymentMethod = new System.Windows.Forms.ComboBox();
             this.bsTransactionLines = new System.Windows.Forms.BindingSource(this.components);
+            this.btnSearchCustomer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bsTransaction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionLines)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlTransactionTotalValue)).BeginInit();
@@ -55,6 +56,9 @@
             // 
             // grdTransactionLines
             // 
+            this.grdTransactionLines.AllowUserToAddRows = false;
+            this.grdTransactionLines.AllowUserToDeleteRows = false;
+            this.grdTransactionLines.AllowUserToOrderColumns = true;
             this.grdTransactionLines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -62,6 +66,7 @@
             this.grdTransactionLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdTransactionLines.Location = new System.Drawing.Point(12, 248);
             this.grdTransactionLines.Name = "grdTransactionLines";
+            this.grdTransactionLines.ReadOnly = true;
             this.grdTransactionLines.RowTemplate.Height = 25;
             this.grdTransactionLines.Size = new System.Drawing.Size(660, 276);
             this.grdTransactionLines.TabIndex = 0;
@@ -76,6 +81,7 @@
             this.btnCancelTransaction.TabIndex = 9;
             this.btnCancelTransaction.Text = "Cancel";
             this.btnCancelTransaction.UseVisualStyleBackColor = true;
+            this.btnCancelTransaction.Click += new System.EventHandler(this.btnCancelTransaction_Click);
             // 
             // btnSaveTransaction
             // 
@@ -87,22 +93,25 @@
             this.btnSaveTransaction.TabIndex = 8;
             this.btnSaveTransaction.Text = "Save";
             this.btnSaveTransaction.UseVisualStyleBackColor = true;
+            this.btnSaveTransaction.Click += new System.EventHandler(this.btnSaveTransaction_Click);
             // 
-            // button1
+            // btnAddTransactionLine
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnAddTransactionLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(12, 219);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(225, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Add Transaction Line";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAddTransactionLine.Location = new System.Drawing.Point(12, 219);
+            this.btnAddTransactionLine.Name = "btnAddTransactionLine";
+            this.btnAddTransactionLine.Size = new System.Drawing.Size(225, 23);
+            this.btnAddTransactionLine.TabIndex = 10;
+            this.btnAddTransactionLine.Text = "Add Transaction Line";
+            this.btnAddTransactionLine.UseVisualStyleBackColor = true;
+            this.btnAddTransactionLine.Click += new System.EventHandler(this.btnAddTransactionLine_Click);
             // 
             // ctrlTransactionTotalValue
             // 
             this.ctrlTransactionTotalValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlTransactionTotalValue.Location = new System.Drawing.Point(444, 129);
+            this.ctrlTransactionTotalValue.DecimalPlaces = 2;
+            this.ctrlTransactionTotalValue.Location = new System.Drawing.Point(472, 129);
             this.ctrlTransactionTotalValue.Name = "ctrlTransactionTotalValue";
             this.ctrlTransactionTotalValue.ReadOnly = true;
             this.ctrlTransactionTotalValue.Size = new System.Drawing.Size(200, 23);
@@ -120,7 +129,7 @@
             // 
             this.lblTransactionTotalValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTransactionTotalValue.AutoSize = true;
-            this.lblTransactionTotalValue.Location = new System.Drawing.Point(375, 131);
+            this.lblTransactionTotalValue.Location = new System.Drawing.Point(403, 131);
             this.lblTransactionTotalValue.Name = "lblTransactionTotalValue";
             this.lblTransactionTotalValue.Size = new System.Drawing.Size(63, 15);
             this.lblTransactionTotalValue.TabIndex = 29;
@@ -130,7 +139,7 @@
             // 
             this.lblTransactionPaymentMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTransactionPaymentMethod.AutoSize = true;
-            this.lblTransactionPaymentMethod.Location = new System.Drawing.Point(339, 92);
+            this.lblTransactionPaymentMethod.Location = new System.Drawing.Point(367, 92);
             this.lblTransactionPaymentMethod.Name = "lblTransactionPaymentMethod";
             this.lblTransactionPaymentMethod.Size = new System.Drawing.Size(99, 15);
             this.lblTransactionPaymentMethod.TabIndex = 28;
@@ -198,16 +207,28 @@
             // 
             this.ctrlPaymentMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlPaymentMethod.FormattingEnabled = true;
-            this.ctrlPaymentMethod.Location = new System.Drawing.Point(444, 89);
+            this.ctrlPaymentMethod.Location = new System.Drawing.Point(472, 89);
             this.ctrlPaymentMethod.Name = "ctrlPaymentMethod";
             this.ctrlPaymentMethod.Size = new System.Drawing.Size(200, 23);
             this.ctrlPaymentMethod.TabIndex = 36;
+            // 
+            // btnSearchCustomer
+            // 
+            this.btnSearchCustomer.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSearchCustomer.Location = new System.Drawing.Point(295, 49);
+            this.btnSearchCustomer.Name = "btnSearchCustomer";
+            this.btnSearchCustomer.Size = new System.Drawing.Size(53, 23);
+            this.btnSearchCustomer.TabIndex = 37;
+            this.btnSearchCustomer.Text = "Search";
+            this.btnSearchCustomer.UseVisualStyleBackColor = true;
+            this.btnSearchCustomer.Click += new System.EventHandler(this.BtnSearchCustomer_Click);
             // 
             // TransactionF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 561);
+            this.Controls.Add(this.btnSearchCustomer);
             this.Controls.Add(this.ctrlPaymentMethod);
             this.Controls.Add(this.ctrlTransactionCustomer);
             this.Controls.Add(this.lblTransactionCustomer);
@@ -220,7 +241,7 @@
             this.Controls.Add(this.lblTransactionEmployee);
             this.Controls.Add(this.lblTransactionDate);
             this.Controls.Add(this.lblTransactionCardNumber);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAddTransactionLine);
             this.Controls.Add(this.btnCancelTransaction);
             this.Controls.Add(this.btnSaveTransaction);
             this.Controls.Add(this.grdTransactionLines);
@@ -242,7 +263,7 @@
         private DataGridView grdTransactionLines;
         private Button btnCancelTransaction;
         private Button btnSaveTransaction;
-        private Button button1;
+        private Button btnAddTransactionLine;
         private NumericUpDown ctrlTransactionTotalValue;
         private ComboBox ctrlTransactionEmployee;
         private Label lblTransactionTotalValue;
@@ -256,5 +277,6 @@
         private Label lblTransactionCustomer;
         private ComboBox ctrlPaymentMethod;
         private BindingSource bsTransactionLines;
+        private Button btnSearchCustomer;
     }
 }

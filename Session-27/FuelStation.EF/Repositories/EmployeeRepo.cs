@@ -40,6 +40,11 @@ namespace FuelStation.EF.Repositories
             return await _context.Employees.AsNoTracking().ToListAsync();
         }
 
+        public Task<Employee> GetByAttrAsync(string value)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Employee> GetByIdAsync(uint id)
         {
             return await _context.Employees.AsNoTracking().SingleOrDefaultAsync(employee => employee.ID == id);

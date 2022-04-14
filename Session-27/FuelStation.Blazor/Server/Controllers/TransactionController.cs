@@ -48,13 +48,16 @@ namespace FuelStation.Blazor.Server.Controllers
                 viewmodel.EmployeeID = foundTransaction.EmployeeID;
                 viewmodel.PaymentMethod = foundTransaction.PaymentMethod;
                 viewmodel.TotalValue = foundTransaction.TotalValue;
-                viewmodel.TransactionLines = foundTransaction.TransactionLines.Select(x => new TransactionLineListViewModel
+                viewmodel.TransactionLines = foundTransaction.TransactionLines.Select(x => new TransactionLineViewModel
                 {
                     ID = x.ID,
-                    Item = x.Item.Description,
+                    ItemID = x.ItemID,
                     Quantity = x.Quantity,
                     ItemPrice = x.Item.Price,
+                    ItemType = x.Item.ItemType,
+                    NetValue = x.NetValue,
                     DiscountPercent = x.DiscountPercent,
+                    DiscountValue = x.DiscountPercent,
                     TotalValue = x.TotalValue
                 }).ToList();
             }
@@ -69,9 +72,17 @@ namespace FuelStation.Blazor.Server.Controllers
                 EmployeeID = transaction.EmployeeID,
                 CustomerID = transaction.CustomerID,
                 PaymentMethod = transaction.PaymentMethod,
-                TotalValue = _transactionHandler.CalculateTransactionTotalValue(
-                                                    (List<double>)transaction.TransactionLines.Select(x => x.TotalValue)
-                                                ),
+                TotalValue = transaction.TotalValue,
+                TransactionLines = transaction.TransactionLines.Select(x => new TransactionLine
+                {
+                    ItemID = x.ItemID,
+                    Quantity = x.Quantity,
+                    ItemPrice = x.ItemPrice,
+                    NetValue = x.NetValue,
+                    DiscountPercent = x.DiscountPercent,
+                    DiscountValue = x.DiscountValue,
+                    TotalValue = x.TotalValue
+                }).ToList()
             };
             
             await _transactionRepo.AddAsync(newTransaction);

@@ -45,6 +45,11 @@ namespace FuelStation.EF.Repositories
                                               .ToListAsync();
         }
 
+        public Task<Transaction> GetByAttrAsync(string value)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Transaction> GetByIdAsync(uint id)
         {
             return await _context.Transactions.AsNoTracking()

@@ -25,7 +25,7 @@ namespace FuelStation.Blazor.Shared
         public uint CustomerID { get; set; }
         public PaymentMethodEnum PaymentMethod { get; set; }
         public double TotalValue { get; set; }
-        public List<TransactionLineListViewModel> TransactionLines { get; set; } = new();
+        public List<TransactionLineViewModel> TransactionLines { get; set; } = new();
         public List<string> Messages { get; set; } = new();
 
 

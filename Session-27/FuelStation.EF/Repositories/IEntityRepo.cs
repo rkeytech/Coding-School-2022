@@ -14,5 +14,6 @@ namespace FuelStation.EF.Repositories
         Task AddAsync(TEntity entity);
         Task UpdateAsync(uint id, TEntity entity);
         Task DeleteAsync(uint id);
+        Task<TEntity> GetByAttrAsync(string value);
     }
 }

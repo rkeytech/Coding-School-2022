@@ -19,17 +19,25 @@ namespace FuelStation.Win.HelperFunctions
         {
             select.DataSource = Enum.GetValues(typeof(ItemTypeEnum));
         }
-        
+
         public void PopulatePaymentMethod(ComboBox select)
         {
             select.DataSource = Enum.GetValues(typeof(PaymentMethodEnum));
         }
-        
+
         public void PopulateEmployees(ComboBox select, List<EmployeeListViewModel> employees)
         {
             select.DataSource = employees;
 
             select.DisplayMember = "Surname";
+            select.ValueMember = "ID";
+        }
+
+        public void PopulateItems(ComboBox select, List<ItemListViewModel> items)
+        {
+            select.DataSource = items;
+
+            select.DisplayMember = "Description";
             select.ValueMember = "ID";
         }
     }

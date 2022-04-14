@@ -14,14 +14,14 @@ namespace FuelStation.Model.Handlers
 
         }
 
-        public double CalculateNetValue(uint quantity, double price)
+        public double CalculateNetValue(double quantity, double price)
         {
             if (quantity <= 0) throw new ArgumentException("Quantity must be a non zero positive number");
             if (price <= 0) throw new ArgumentException("Price must be a non zero positive number");
             return quantity * price;
         }
 
-        public double CalculateDiscountValue(double netValue, float discountPercent)
+        public double CalculateDiscountValue(double netValue, double discountPercent)
         {
             if (netValue <= 0) throw new ArgumentException("Net Value must be a non zero positive value");
             if (discountPercent < 0) throw new ArgumentException("Discount Percent must not be a negative value");
@@ -40,15 +40,14 @@ namespace FuelStation.Model.Handlers
             return linesTotalValues.Sum();
         }
 
-        public double ApplyTenPercentDiscount(double netValue, double totalValue)
+        public double ApplyTenPercentDiscount(double netValue, double discount, ItemTypeEnum type)
         {
             if (netValue <= 0) throw new ArgumentException("Net Value must be a non zero positive value");
-            if (totalValue < 0) throw new ArgumentException("Total Value must be a positive number");
-            if (netValue > 20)
+            if (type == ItemTypeEnum.Fuel && netValue > 20)
             {
-                return totalValue - totalValue * 0.10;
+                return netValue * discount;
             }
-            return totalValue;
+            return 0;
         }
 
         public bool CheckFuelExist(List<TransactionLine> transactionLines)

@@ -45,11 +45,6 @@ namespace FuelStation.EF.Repositories
             return await _context.Customers.AsNoTracking().SingleOrDefaultAsync(customer => customer.ID == id);
         }
         
-        public async Task<Customer> GetByCardNumberAsync(string cardNumber)
-        {
-            return await _context.Customers.AsNoTracking().SingleOrDefaultAsync(customer => customer.CardNumber == cardNumber);
-        }
-
         public async Task UpdateAsync(uint id, Customer entity)
         {
             var foundCustomer = await _context.Customers.SingleOrDefaultAsync(customer => customer.ID == id);
@@ -59,6 +54,11 @@ namespace FuelStation.EF.Repositories
             foundCustomer.Surname = entity.Surname;
             foundCustomer.CardNumber = entity.CardNumber;
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<Customer> GetByAttrAsync(string value)
+        {
+            return await _context.Customers.AsNoTracking().SingleOrDefaultAsync(customer => customer.CardNumber == value);
         }
     }
 }
