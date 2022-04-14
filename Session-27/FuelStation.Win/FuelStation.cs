@@ -29,14 +29,28 @@ namespace FuelStation.Win
 
         }
 
-        private void menuButtonCustomersShow_Click(object sender, EventArgs e)
+        
+
+        private void itemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowForm(new ItemsF(_httpClient));
+
+        }
+
+        private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowForm(new CustomersF(_httpClient));
+        }
+        
+        private void transactionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowForm(new TransactionsF(_httpClient));
         }
 
         private void ShowForm(Form form)
         {
             form.ShowDialog();
         }
+
     }
 }

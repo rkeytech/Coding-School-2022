@@ -34,24 +34,33 @@ namespace FuelStation.Blazor.Server.Controllers
                 TotalValue = x.TotalValue
             });
         }
-        
-        //[HttpGet("{id}")]
-        //public async Task<ItemEditViewModel> Get(uint id)
-        //{
-        //    ItemEditViewModel viewmodel = new ItemEditViewModel();
-        //    if (id != 0)
-        //    {
-        //        var foundItem = await _transactionRepo.GetByIdAsync(id);
-        //        viewmodel.ID = foundItem.ID;
-        //        viewmodel.Code = foundItem.Code;
-        //        viewmodel.Description = foundItem.Description;
-        //        viewmodel.Cost = foundItem.Cost;
-        //        viewmodel.Price = foundItem.Price;
-        //        viewmodel.ItemType = foundItem.ItemType;
-        //    }
-        //    return viewmodel;
-        //}
-        
+
+        [HttpGet("{id}")]
+        public async Task<TransactionEditViewModel> Get(uint id)
+        {
+            TransactionEditViewModel viewmodel = new TransactionEditViewModel();
+            if (id != 0)
+            {
+                var foundTransaction = await _transactionRepo.GetByIdAsync(id);
+                viewmodel.ID = foundTransaction.ID;
+                viewmodel.Date = foundTransaction.Date;
+                viewmodel.CustomerID = foundTransaction.CustomerID;
+                viewmodel.EmployeeID = foundTransaction.EmployeeID;
+                viewmodel.PaymentMethod = foundTransaction.PaymentMethod;
+                viewmodel.TotalValue = foundTransaction.TotalValue;
+                viewmodel.TransactionLines = foundTransaction.TransactionLines.Select(x => new TransactionLineListViewModel
+                {
+                    ID = x.ID,
+                    Item = x.Item.Description,
+                    Quantity = x.Quantity,
+                    ItemPrice = x.Item.Price,
+                    DiscountPercent = x.DiscountPercent,
+                    TotalValue = x.TotalValue
+                }).ToList();
+            }
+            return viewmodel;
+        }
+
         [HttpPost]
         public async Task Post(TransactionEditViewModel transaction)
         {

@@ -43,7 +43,8 @@
             this.grdCustomers.AllowUserToAddRows = false;
             this.grdCustomers.AllowUserToDeleteRows = false;
             this.grdCustomers.AllowUserToOrderColumns = true;
-            this.grdCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.grdCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -51,14 +52,14 @@
             this.grdCustomers.Name = "grdCustomers";
             this.grdCustomers.ReadOnly = true;
             this.grdCustomers.RowTemplate.Height = 25;
-            this.grdCustomers.Size = new System.Drawing.Size(584, 723);
+            this.grdCustomers.Size = new System.Drawing.Size(584, 623);
             this.grdCustomers.TabIndex = 0;
             // 
             // btnEditCustomer
             // 
             this.btnEditCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditCustomer.Location = new System.Drawing.Point(214, 729);
+            this.btnEditCustomer.Location = new System.Drawing.Point(214, 629);
             this.btnEditCustomer.Name = "btnEditCustomer";
             this.btnEditCustomer.Size = new System.Drawing.Size(136, 23);
             this.btnEditCustomer.TabIndex = 1;
@@ -70,7 +71,7 @@
             // 
             this.btnAddCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddCustomer.Location = new System.Drawing.Point(72, 729);
+            this.btnAddCustomer.Location = new System.Drawing.Point(72, 629);
             this.btnAddCustomer.Name = "btnAddCustomer";
             this.btnAddCustomer.Size = new System.Drawing.Size(136, 23);
             this.btnAddCustomer.TabIndex = 2;
@@ -82,7 +83,7 @@
             // 
             this.btnDeleteCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteCustomer.Location = new System.Drawing.Point(356, 729);
+            this.btnDeleteCustomer.Location = new System.Drawing.Point(356, 629);
             this.btnDeleteCustomer.Name = "btnDeleteCustomer";
             this.btnDeleteCustomer.Size = new System.Drawing.Size(136, 23);
             this.btnDeleteCustomer.TabIndex = 3;
@@ -94,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 761);
+            this.ClientSize = new System.Drawing.Size(584, 661);
             this.Controls.Add(this.btnDeleteCustomer);
             this.Controls.Add(this.btnAddCustomer);
             this.Controls.Add(this.btnEditCustomer);

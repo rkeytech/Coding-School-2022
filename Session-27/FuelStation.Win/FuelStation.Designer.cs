@@ -32,12 +32,6 @@
             this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuButtonCustomersAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuButtonCustomersShow = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuButtonItemsAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuButtonItemsShow = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuButtonTransactionsAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuButtonTransactionsShow = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,67 +50,24 @@
             // 
             // customersToolStripMenuItem
             // 
-            this.customersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuButtonCustomersAdd,
-            this.menuButtonCustomersShow});
             this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
             this.customersToolStripMenuItem.Size = new System.Drawing.Size(113, 19);
             this.customersToolStripMenuItem.Text = "Customers";
+            this.customersToolStripMenuItem.Click += new System.EventHandler(this.customersToolStripMenuItem_Click);
             // 
             // itemsToolStripMenuItem
             // 
-            this.itemsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuButtonItemsAdd,
-            this.menuButtonItemsShow});
             this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
             this.itemsToolStripMenuItem.Size = new System.Drawing.Size(113, 19);
             this.itemsToolStripMenuItem.Text = "Items";
+            this.itemsToolStripMenuItem.Click += new System.EventHandler(this.itemsToolStripMenuItem_Click);
             // 
             // transactionsToolStripMenuItem
             // 
-            this.transactionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuButtonTransactionsAdd,
-            this.menuButtonTransactionsShow});
             this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
             this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(113, 19);
             this.transactionsToolStripMenuItem.Text = "Transactions";
-            // 
-            // menuButtonCustomersAdd
-            // 
-            this.menuButtonCustomersAdd.Name = "menuButtonCustomersAdd";
-            this.menuButtonCustomersAdd.Size = new System.Drawing.Size(103, 22);
-            this.menuButtonCustomersAdd.Text = "Add";
-            // 
-            // menuButtonCustomersShow
-            // 
-            this.menuButtonCustomersShow.Name = "menuButtonCustomersShow";
-            this.menuButtonCustomersShow.Size = new System.Drawing.Size(180, 22);
-            this.menuButtonCustomersShow.Text = "Show";
-            this.menuButtonCustomersShow.Click += new System.EventHandler(this.menuButtonCustomersShow_Click);
-            // 
-            // menuButtonItemsAdd
-            // 
-            this.menuButtonItemsAdd.Name = "menuButtonItemsAdd";
-            this.menuButtonItemsAdd.Size = new System.Drawing.Size(180, 22);
-            this.menuButtonItemsAdd.Text = "Add";
-            // 
-            // menuButtonItemsShow
-            // 
-            this.menuButtonItemsShow.Name = "menuButtonItemsShow";
-            this.menuButtonItemsShow.Size = new System.Drawing.Size(180, 22);
-            this.menuButtonItemsShow.Text = "Show";
-            // 
-            // menuButtonTransactionsAdd
-            // 
-            this.menuButtonTransactionsAdd.Name = "menuButtonTransactionsAdd";
-            this.menuButtonTransactionsAdd.Size = new System.Drawing.Size(180, 22);
-            this.menuButtonTransactionsAdd.Text = "Add";
-            // 
-            // menuButtonTransactionsShow
-            // 
-            this.menuButtonTransactionsShow.Name = "menuButtonTransactionsShow";
-            this.menuButtonTransactionsShow.Size = new System.Drawing.Size(180, 22);
-            this.menuButtonTransactionsShow.Text = "Show";
+            this.transactionsToolStripMenuItem.Click += new System.EventHandler(this.transactionsToolStripMenuItem_Click);
             // 
             // FuelStation
             // 
@@ -141,11 +92,5 @@
         private ToolStripMenuItem customersToolStripMenuItem;
         private ToolStripMenuItem itemsToolStripMenuItem;
         private ToolStripMenuItem transactionsToolStripMenuItem;
-        private ToolStripMenuItem menuButtonCustomersAdd;
-        private ToolStripMenuItem menuButtonCustomersShow;
-        private ToolStripMenuItem menuButtonItemsAdd;
-        private ToolStripMenuItem menuButtonItemsShow;
-        private ToolStripMenuItem menuButtonTransactionsAdd;
-        private ToolStripMenuItem menuButtonTransactionsShow;
     }
 }
