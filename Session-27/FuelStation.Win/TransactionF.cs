@@ -66,6 +66,8 @@ namespace FuelStation.Win
             grdTransactionLines.DataSource = null;
             grdTransactionLines.DataSource = bsTransactionLines;
             grdTransactionLines.Columns["ID"].Visible = false;
+            grdTransactionLines.Columns["ItemID"].Visible = false;
+            grdTransactionLines.Columns["DiscountPercent"].Visible = false;
         }
 
         private void SetDataBindings()
@@ -88,7 +90,9 @@ namespace FuelStation.Win
                 ctrlTransactionTotalValue.Value = (decimal)_transaction.TotalValue;
                 if (!_transactionHandler.CheckCardPaymentAvail(_transaction.TotalValue))
                 {
-                    ctrlPaymentMethod.SelectedIndex = (int)PaymentMethodEnum.Cash;
+                    _transaction.PaymentMethod = PaymentMethodEnum.Cash;
+                    ctrlPaymentMethod.SelectedIndex = (int)_transaction.PaymentMethod;
+                    ctrlPaymentMethod.Enabled = false;
                 }
             }
             PopulateTransactionLines();
@@ -122,10 +126,26 @@ namespace FuelStation.Win
             if (!string.IsNullOrEmpty(cardNumber))
             {
                 _customer = await _httpClient.GetFromJsonAsync<CustomerEditViewModel>($"customer/card/{cardNumber}");
-                ctrlTransactionCardNumber.Text = _customer.CardNumber;
-                ctrlTransactionCustomer.Text = $"{_customer.Surname} {_customer.Name}";
-                _transaction.CustomerID = _customer.ID;
+                if (!string.IsNullOrEmpty(_customer.CardNumber))
+                {
+                    ctrlTransactionCardNumber.Text = _customer.CardNumber;
+                    ctrlTransactionCustomer.Text = $"{_customer.Surname} {_customer.Name}";
+                    _transaction.CustomerID = _customer.ID;
+                }
+                else
+                {
+                    MessageBox.Show("There is no customer with that Card number in database", "Error", MessageBoxButtons.OKCancel);
+                    return;
+                }
             }
+        }
+
+        private void btnDeleteTransactionLine_Click(object sender, EventArgs e)
+        {
+            var selectedTransactionLine = bsTransactionLines.Current as TransactionLineViewModel;
+            if(selectedTransactionLine is not null)
+                _transaction.TransactionLines.Remove(selectedTransactionLine);
+            PopulateTransactionLines();
         }
     }
 }

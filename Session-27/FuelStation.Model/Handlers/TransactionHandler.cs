@@ -18,26 +18,26 @@ namespace FuelStation.Model.Handlers
         {
             if (quantity <= 0) throw new ArgumentException("Quantity must be a non zero positive number");
             if (price <= 0) throw new ArgumentException("Price must be a non zero positive number");
-            return quantity * price;
+            return Math.Round(quantity * price, 2);
         }
 
         public double CalculateDiscountValue(double netValue, double discountPercent)
         {
             if (netValue <= 0) throw new ArgumentException("Net Value must be a non zero positive value");
             if (discountPercent < 0) throw new ArgumentException("Discount Percent must not be a negative value");
-            return netValue * discountPercent;
+            return Math.Round(netValue * discountPercent, 2);
         }
 
         public double CalculateLineTotalValue(double discountValue, double netValue)
         {
             if (discountValue < 0) throw new ArgumentException("Discount value must not be a negative value");
             if (netValue <= 0) throw new ArgumentException("Net Value must be a non zero positive value");
-            return netValue - discountValue;
+            return Math.Round(netValue - discountValue, 2);
         }
         
         public double CalculateTransactionTotalValue(List<double> linesTotalValues)
         {
-            return linesTotalValues.Sum();
+            return Math.Round(linesTotalValues.Sum());
         }
 
         public double ApplyTenPercentDiscount(double netValue, double discount, ItemTypeEnum type)
@@ -45,7 +45,7 @@ namespace FuelStation.Model.Handlers
             if (netValue <= 0) throw new ArgumentException("Net Value must be a non zero positive value");
             if (type == ItemTypeEnum.Fuel && netValue > 20)
             {
-                return netValue * discount;
+                return Math.Round(netValue * discount);
             }
             return 0;
         }

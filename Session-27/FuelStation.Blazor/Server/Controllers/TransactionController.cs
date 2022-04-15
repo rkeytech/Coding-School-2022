@@ -52,6 +52,7 @@ namespace FuelStation.Blazor.Server.Controllers
                 {
                     ID = x.ID,
                     ItemID = x.ItemID,
+                    ItemName = x.Item.Description,
                     Quantity = x.Quantity,
                     ItemPrice = x.Item.Price,
                     ItemType = x.Item.ItemType,

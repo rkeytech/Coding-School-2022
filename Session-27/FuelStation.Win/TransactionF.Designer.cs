@@ -58,13 +58,14 @@
             // 
             this.grdTransactionLines.AllowUserToAddRows = false;
             this.grdTransactionLines.AllowUserToDeleteRows = false;
-            this.grdTransactionLines.AllowUserToOrderColumns = true;
             this.grdTransactionLines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdTransactionLines.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grdTransactionLines.CausesValidation = false;
             this.grdTransactionLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdTransactionLines.Location = new System.Drawing.Point(12, 248);
+            this.grdTransactionLines.MultiSelect = false;
             this.grdTransactionLines.Name = "grdTransactionLines";
             this.grdTransactionLines.ReadOnly = true;
             this.grdTransactionLines.RowTemplate.Height = 25;
@@ -97,7 +98,8 @@
             // 
             // btnAddTransactionLine
             // 
-            this.btnAddTransactionLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnAddTransactionLine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddTransactionLine.Location = new System.Drawing.Point(12, 219);
             this.btnAddTransactionLine.Name = "btnAddTransactionLine";

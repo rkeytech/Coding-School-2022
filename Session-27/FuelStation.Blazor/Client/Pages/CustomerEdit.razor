@@ -32,7 +32,7 @@ else
     <div class="row">
         <div class="col-md-8">
             <label for="customer-card">Card Number</label>
-            <input name="customer-card" class="form-control" @bind="@CustomerItem.CardNumber" placeholder="Customer Card Number" />
+            <input pattern="A\d+" name="customer-card" class="form-control" @bind="@CustomerItem.CardNumber" placeholder="Customer Card Number" />
         </div>
     </div>
     <div class="row">
@@ -72,7 +72,8 @@ else
     {
         if (string.IsNullOrEmpty(CustomerItem.CardNumber) ||
             string.IsNullOrEmpty(CustomerItem.Surname) ||
-            string.IsNullOrEmpty(CustomerItem.Name))
+            string.IsNullOrEmpty(CustomerItem.Name) ||
+            !CustomerItem.CardNumber.StartsWith("A"))
         {
             ShowingErrorMessages = true;
             return;

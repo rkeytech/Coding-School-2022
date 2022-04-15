@@ -28,7 +28,7 @@ namespace FuelStation.Blazor.Server.Controllers
                 CardNumber = x.CardNumber
             });
         }
-        
+
         [HttpGet("{id}")]
         public async Task<CustomerEditViewModel> Get(uint id)
         {
@@ -43,7 +43,7 @@ namespace FuelStation.Blazor.Server.Controllers
             }
             return viewmodel;
         }
-        
+
         [HttpGet("card/{cardNumber}")]
         public async Task<CustomerEditViewModel> Get(string cardNumber)
         {
@@ -51,14 +51,18 @@ namespace FuelStation.Blazor.Server.Controllers
             if (!string.IsNullOrEmpty(cardNumber))
             {
                 var foundCustomer = await _customerRepo.GetByAttrAsync(cardNumber);
-                viewmodel.ID = foundCustomer.ID;
-                viewmodel.Name = foundCustomer.Name;
-                viewmodel.Surname = foundCustomer.Surname;
-                viewmodel.CardNumber = foundCustomer.CardNumber;
+                if (foundCustomer is not null)
+                {
+                    viewmodel.ID = foundCustomer.ID;
+                    viewmodel.Name = foundCustomer.Name;
+                    viewmodel.Surname = foundCustomer.Surname;
+                    viewmodel.CardNumber = foundCustomer.CardNumber;
+                }
+                viewmodel.CardNumber = String.Empty;
             }
             return viewmodel;
         }
-        
+
         [HttpPost]
         public async Task Post(CustomerEditViewModel customer)
         {
@@ -68,8 +72,14 @@ namespace FuelStation.Blazor.Server.Controllers
                 Surname = customer.Surname,
                 CardNumber = customer.CardNumber
             };
-            
-            await _customerRepo.AddAsync(newCustomer);
+            try
+            {
+                await _customerRepo.AddAsync(newCustomer);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         [HttpDelete("{id}")]
@@ -83,7 +93,7 @@ namespace FuelStation.Blazor.Server.Controllers
         {
             var customerToUpdate = await _customerRepo.GetByIdAsync(customer.ID);
             if (customerToUpdate == null) return NotFound();
-            
+
             customerToUpdate.Name = customer.Name;
             customerToUpdate.Surname = customer.Surname;
             customerToUpdate.CardNumber = customer.CardNumber;

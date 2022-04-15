@@ -55,6 +55,7 @@
             // 
             this.ctrlPassword.Location = new System.Drawing.Point(140, 134);
             this.ctrlPassword.Name = "ctrlPassword";
+            this.ctrlPassword.PasswordChar = '*';
             this.ctrlPassword.Size = new System.Drawing.Size(201, 23);
             this.ctrlPassword.TabIndex = 3;
             // 

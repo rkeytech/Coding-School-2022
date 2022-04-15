@@ -95,6 +95,7 @@ namespace FuelStation.Win
         {
             _transactionLine.ItemPrice = _selectedItem.Price;
             _transactionLine.ItemType = _selectedItem.ItemType;
+            _transactionLine.ItemName = _selectedItem.Description;
             _transactionLine.NetValue = _transactionHandler.CalculateNetValue((double)ctrlQuantity.Value, _selectedItem.Price);
             _transactionLine.DiscountValue = _transactionHandler.ApplyTenPercentDiscount(_transactionLine.NetValue, 0.10, _selectedItem.ItemType);
             _transactionLine.TotalValue = _transactionHandler.CalculateLineTotalValue(_transactionLine.DiscountValue, _transactionLine.NetValue);
