@@ -12,5 +12,6 @@ namespace FuelStation.Blazor.Shared
         public string? Username { get; set; }
         public EmployeeTypeEnum? EmployeeType { get; set; }
         public List<string> Messages { get; set; } = new();
+        public bool IsAuthed { get; set; }
     }
 }

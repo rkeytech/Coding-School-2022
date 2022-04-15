@@ -50,18 +50,6 @@ namespace FuelStation.Model.Handlers
             return 0;
         }
 
-        public bool CheckFuelExist(List<TransactionLine> transactionLines)
-        {
-            foreach (var line in transactionLines)
-            {
-                if (line.Item?.ItemType == ItemTypeEnum.Fuel)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public bool CheckCardPaymentAvail(double totalValue)
         {
             if (totalValue < 0) throw new ArgumentException("Total Value must be a positive number");

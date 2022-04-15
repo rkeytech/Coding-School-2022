@@ -82,6 +82,8 @@ namespace FuelStation.Win
 
         private async void ctrlItem_DropDownClosed(object sender, EventArgs e)
         {
+            if (ctrlItem.SelectedValue is null)
+                return;
             var selectedItemID = ctrlItem.SelectedValue;
             _selectedItem = await _httpClient.GetFromJsonAsync<ItemEditViewModel>($"item/{selectedItemID}");
             UpdateTransactionLine();
@@ -100,6 +102,8 @@ namespace FuelStation.Win
 
         private void ctrlQuantity_ValueChanged(object sender, EventArgs e)
         {
+            if (ctrlItem.SelectedValue is null)
+                return;
             UpdateTransactionLine();
             ctrlItemPrice.Value = (decimal)_transactionLine.ItemPrice;
             ctrlTotalValue.Value = (decimal)_transactionLine.TotalValue;

@@ -35,7 +35,8 @@ namespace FuelStation.Blazor.Server.Controllers
                 return new UserAuthenticatedViewModel()
                 {
                     Username = foundUser.Username,
-                    EmployeeType = foundUser.Employee.EmployeeType
+                    EmployeeType = foundUser.Employee.EmployeeType,
+                    IsAuthed = true
                 };
             }
             return new UserAuthenticatedViewModel()

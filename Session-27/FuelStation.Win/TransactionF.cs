@@ -1,4 +1,5 @@
 ﻿using FuelStation.Blazor.Shared;
+using FuelStation.Model;
 using FuelStation.Model.Handlers;
 using FuelStation.Win.HelperFunctions;
 using System;
@@ -71,7 +72,7 @@ namespace FuelStation.Win
         {
             ctrlTransactionDate.DataBindings.Add(new Binding("Value", bsTransaction, "Date", true));
             ctrlTransactionEmployee.DataBindings.Add(new Binding("SelectedValue", bsTransaction, "EmployeeID", true));
-            ctrlPaymentMethod.DataBindings.Add(new Binding("ValueMember", bsTransaction, "PaymentMethod", true));
+            ctrlPaymentMethod.DataBindings.Add(new Binding("SelectedValue", bsTransaction, "PaymentMethod", true));
             ctrlTransactionTotalValue.DataBindings.Add(new Binding("Value", bsTransaction, "TotalValue", true));
 
         }
@@ -85,6 +86,10 @@ namespace FuelStation.Win
             {
                 _transaction.TotalValue = _transactionHandler.CalculateTransactionTotalValue(_transaction.TransactionLines.Select(x => x.TotalValue).ToList());
                 ctrlTransactionTotalValue.Value = (decimal)_transaction.TotalValue;
+                if (!_transactionHandler.CheckCardPaymentAvail(_transaction.TotalValue))
+                {
+                    ctrlPaymentMethod.SelectedIndex = (int)PaymentMethodEnum.Cash;
+                }
             }
             PopulateTransactionLines();
         }

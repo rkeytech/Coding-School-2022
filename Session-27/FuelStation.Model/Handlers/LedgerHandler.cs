@@ -31,7 +31,7 @@ namespace FuelStation.Model.Handlers
 
             salaries += employees.Select(x => x.SalaryPerMonth).Sum();
 
-            return productsCosts + salaries + rent;
+            return Math.Round(productsCosts + salaries + rent, 2);
         }
     }
 }
