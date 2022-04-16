@@ -37,7 +37,7 @@ namespace FuelStation.Model.Handlers
         
         public double CalculateTransactionTotalValue(List<double> linesTotalValues)
         {
-            return Math.Round(linesTotalValues.Sum());
+            return Math.Round(linesTotalValues.Sum(), 2);
         }
 
         public double ApplyTenPercentDiscount(double netValue, double discount, ItemTypeEnum type)

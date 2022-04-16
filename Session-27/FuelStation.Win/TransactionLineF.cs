@@ -69,6 +69,12 @@ namespace FuelStation.Win
 
         private void btnSaveTransactionLine_Click(object sender, EventArgs e)
         {
+            if (ctrlQuantity.Value <= 0 ||
+                ctrlItem.SelectedValue == null)
+            {
+                MessageBox.Show("Make sure you have entered all the required values.", "Error", MessageBoxButtons.OKCancel);
+                return;
+            }
             _transaction.TransactionLines.Add(_transactionLine);
             DialogResult = DialogResult.OK;
             Close();

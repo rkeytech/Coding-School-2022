@@ -40,8 +40,8 @@ else
                         <td>@item.Price</td>
                         <td>@item.ItemType</td>
                         <td>
-                            <button class="btn btn-warning text-primary" @onclick="() => EditItem(item)">Edit</button>
-                            <button class="btn btn-danger text-primary" @onclick="() => DeleteItem(item)">Delete</button>
+                            <button class="btn btn-warning" @onclick="() => EditItem(item)">Edit</button>
+                            <button class="btn btn-danger" @onclick="() => DeleteItem(item)">Delete</button>
                         </td>
                     </tr>
                 }

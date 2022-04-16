@@ -42,7 +42,7 @@ namespace FuelStation.Win
         private void btnAddTransaction_Click(object sender, EventArgs e)
         {
             Form form = new TransactionF(_httpClient);
-            form.ShowDialog();
+            _ = form.ShowDialog();
             PopulateTransactions();
         }
 

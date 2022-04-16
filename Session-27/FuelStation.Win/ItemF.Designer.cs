@@ -51,24 +51,28 @@
             // 
             this.btnCancelItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(245)))), ((int)(((byte)(240)))));
+            this.btnCancelItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelItem.Location = new System.Drawing.Point(197, 299);
             this.btnCancelItem.Name = "btnCancelItem";
             this.btnCancelItem.Size = new System.Drawing.Size(124, 23);
             this.btnCancelItem.TabIndex = 15;
             this.btnCancelItem.Text = "Cancel";
-            this.btnCancelItem.UseVisualStyleBackColor = true;
+            this.btnCancelItem.UseVisualStyleBackColor = false;
             this.btnCancelItem.Click += new System.EventHandler(this.btnCancelItem_Click);
             // 
             // btnSaveItem
             // 
             this.btnSaveItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(245)))), ((int)(((byte)(240)))));
+            this.btnSaveItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveItem.Location = new System.Drawing.Point(67, 299);
             this.btnSaveItem.Name = "btnSaveItem";
             this.btnSaveItem.Size = new System.Drawing.Size(124, 23);
             this.btnSaveItem.TabIndex = 14;
             this.btnSaveItem.Text = "Save";
-            this.btnSaveItem.UseVisualStyleBackColor = true;
+            this.btnSaveItem.UseVisualStyleBackColor = false;
             this.btnSaveItem.Click += new System.EventHandler(this.btnSaveItem_Click);
             // 
             // ctrlItemDescription
@@ -97,6 +101,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblItemType.AutoSize = true;
+            this.lblItemType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.lblItemType.Location = new System.Drawing.Point(53, 124);
             this.lblItemType.Name = "lblItemType";
             this.lblItemType.Size = new System.Drawing.Size(58, 15);
@@ -109,6 +114,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblItemDescription.AutoSize = true;
+            this.lblItemDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.lblItemDescription.Location = new System.Drawing.Point(21, 85);
             this.lblItemDescription.Name = "lblItemDescription";
             this.lblItemDescription.Size = new System.Drawing.Size(94, 15);
@@ -121,6 +127,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblItemCode.AutoSize = true;
+            this.lblItemCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.lblItemCode.Location = new System.Drawing.Point(53, 41);
             this.lblItemCode.Name = "lblItemCode";
             this.lblItemCode.Size = new System.Drawing.Size(62, 15);
@@ -133,6 +140,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblItemCost.AutoSize = true;
+            this.lblItemCost.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.lblItemCost.Location = new System.Drawing.Point(53, 166);
             this.lblItemCost.Name = "lblItemCost";
             this.lblItemCost.Size = new System.Drawing.Size(58, 15);
@@ -145,6 +153,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblItemPrice.AutoSize = true;
+            this.lblItemPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.lblItemPrice.Location = new System.Drawing.Point(51, 206);
             this.lblItemPrice.Name = "lblItemPrice";
             this.lblItemPrice.Size = new System.Drawing.Size(60, 15);
@@ -153,6 +162,7 @@
             // 
             // ctrlItemType
             // 
+            this.ctrlItemType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ctrlItemType.FormattingEnabled = true;
             this.ctrlItemType.Location = new System.Drawing.Point(148, 121);
             this.ctrlItemType.Name = "ctrlItemType";
@@ -161,6 +171,7 @@
             // 
             // ctrlItemCost
             // 
+            this.ctrlItemCost.DecimalPlaces = 2;
             this.ctrlItemCost.Location = new System.Drawing.Point(148, 164);
             this.ctrlItemCost.Name = "ctrlItemCost";
             this.ctrlItemCost.Size = new System.Drawing.Size(214, 23);
@@ -168,6 +179,7 @@
             // 
             // ctrlItemPrice
             // 
+            this.ctrlItemPrice.DecimalPlaces = 2;
             this.ctrlItemPrice.Location = new System.Drawing.Point(148, 204);
             this.ctrlItemPrice.Name = "ctrlItemPrice";
             this.ctrlItemPrice.Size = new System.Drawing.Size(214, 23);
@@ -177,6 +189,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(63)))), ((int)(((byte)(58)))));
             this.ClientSize = new System.Drawing.Size(384, 361);
             this.Controls.Add(this.ctrlItemPrice);
             this.Controls.Add(this.ctrlItemCost);
@@ -191,7 +204,7 @@
             this.Controls.Add(this.lblItemDescription);
             this.Controls.Add(this.lblItemCode);
             this.Name = "ItemF";
-            this.Text = "ItemF";
+            this.Text = "Item";
             this.Load += new System.EventHandler(this.ItemF_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlItemCost)).EndInit();

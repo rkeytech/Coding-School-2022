@@ -47,6 +47,13 @@ namespace FuelStation.Win
 
         private async void btnSaveCustomer_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(ctrlCustomerName.Text) ||
+                string.IsNullOrEmpty(ctrlCustomerSurname.Text) ||
+                string.IsNullOrEmpty(ctrlCustomerCardNumber.Text))
+            {
+                MessageBox.Show("Make sure you have entered all the required values.", "Error", MessageBoxButtons.OK);
+                return;
+            }
             HttpResponseMessage response;
             if (_customerID == 0)
             {

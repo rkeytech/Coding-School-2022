@@ -58,6 +58,15 @@ namespace FuelStation.Win
 
         private async void btnSaveItem_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(ctrlItemCode.Text) ||
+                string.IsNullOrEmpty(ctrlItemDescription.Text) ||
+                string.IsNullOrEmpty(ctrlItemCost.Text) ||
+                string.IsNullOrEmpty(ctrlItemPrice.Text) ||
+                ctrlItemType.SelectedValue == null)
+            {
+                MessageBox.Show("Make sure you have entered all the required values.", "Error", MessageBoxButtons.OKCancel);
+                return;
+            }
             HttpResponseMessage response;
             if (_itemID == 0)
             {

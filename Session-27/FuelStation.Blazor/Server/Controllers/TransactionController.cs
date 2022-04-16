@@ -85,14 +85,27 @@ namespace FuelStation.Blazor.Server.Controllers
                     TotalValue = x.TotalValue
                 }).ToList()
             };
-            
-            await _transactionRepo.AddAsync(newTransaction);
+            try
+            {
+                await _transactionRepo.AddAsync(newTransaction);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task Delete(uint id)
         {
-            await _transactionRepo.DeleteAsync(id);
+            try
+            {
+                await _transactionRepo.DeleteAsync(id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         //[HttpPut]
@@ -100,7 +113,7 @@ namespace FuelStation.Blazor.Server.Controllers
         //{
         //    var itemToUpdate = await _transactionRepo.GetByIdAsync(item.ID);
         //    if (itemToUpdate == null) return NotFound();
-            
+
         //    itemToUpdate.Code = item.Code;
         //    itemToUpdate.Description = item.Description;
         //    itemToUpdate.Cost = item.Cost;

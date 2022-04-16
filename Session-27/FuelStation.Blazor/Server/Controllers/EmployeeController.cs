@@ -31,7 +31,7 @@ namespace FuelStation.Blazor.Server.Controllers
                 EmployeeType = x.EmployeeType.ToString()
             });
         }
-        
+
         [HttpGet("{id}")]
         public async Task<EmployeeEditViewModel> Get(uint id)
         {
@@ -52,7 +52,7 @@ namespace FuelStation.Blazor.Server.Controllers
             }
             return viewmodel;
         }
-        
+
         [HttpPost]
         public async Task Post(EmployeeEditViewModel employee)
         {
@@ -65,14 +65,27 @@ namespace FuelStation.Blazor.Server.Controllers
                 HireDateEnd = employee.HireDateEnd,
                 EmployeeType = employee.EmployeeType
             };
-            
-            await _employeeRepo.AddAsync(newEmployee);
+            try
+            {
+                await _employeeRepo.AddAsync(newEmployee);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task Delete(uint id)
         {
-            await _employeeRepo.DeleteAsync(id);
+            try
+            {
+                await _employeeRepo.DeleteAsync(id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         [HttpPut]
@@ -80,7 +93,7 @@ namespace FuelStation.Blazor.Server.Controllers
         {
             var employeeToUpdate = await _employeeRepo.GetByIdAsync(employee.ID);
             if (employeeToUpdate == null) return NotFound();
-            
+
             employeeToUpdate.Name = employee.Name;
             employeeToUpdate.Surname = employee.Surname;
             employeeToUpdate.SalaryPerMonth = employee.SalaryPerMonth;
@@ -88,7 +101,14 @@ namespace FuelStation.Blazor.Server.Controllers
             employeeToUpdate.HireDateEnd = employee.HireDateEnd;
             employeeToUpdate.EmployeeType = employee.EmployeeType;
 
-            await _employeeRepo.UpdateAsync(employee.ID, employeeToUpdate);
+            try
+            {
+                await _employeeRepo.UpdateAsync(employee.ID, employeeToUpdate);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             return Ok();
         }
 

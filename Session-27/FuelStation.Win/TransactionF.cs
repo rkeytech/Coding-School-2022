@@ -100,14 +100,18 @@ namespace FuelStation.Win
 
         private async void btnSaveTransaction_Click(object sender, EventArgs e)
         {
-            HttpResponseMessage response;
+            if (string.IsNullOrEmpty(ctrlTransactionCustomer.Text) ||
+                string.IsNullOrEmpty(ctrlTransactionDate.Text) ||
+                ctrlPaymentMethod.SelectedValue == null ||
+                ctrlTransactionEmployee.SelectedValue == null)
+            {
+                MessageBox.Show("Make sure you have entered all the required values.", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            HttpResponseMessage response = new();
             if (_transactionID == 0)
             {
                 response = await _httpClient.PostAsJsonAsync("transaction", _transaction);
-            }
-            else
-            {
-                response = await _httpClient.PutAsJsonAsync("transaction", _transaction);
             }
             response.EnsureSuccessStatusCode();
             DialogResult = DialogResult.OK;
@@ -126,7 +130,7 @@ namespace FuelStation.Win
             if (!string.IsNullOrEmpty(cardNumber))
             {
                 _customer = await _httpClient.GetFromJsonAsync<CustomerEditViewModel>($"customer/card/{cardNumber}");
-                if (!string.IsNullOrEmpty(_customer.CardNumber))
+                if (_customer?.ID != 0)
                 {
                     ctrlTransactionCardNumber.Text = _customer.CardNumber;
                     ctrlTransactionCustomer.Text = $"{_customer.Surname} {_customer.Name}";
@@ -134,7 +138,7 @@ namespace FuelStation.Win
                 }
                 else
                 {
-                    MessageBox.Show("There is no customer with that Card number in database", "Error", MessageBoxButtons.OKCancel);
+                    MessageBox.Show("There is no customer with that Card number in database", "Error", MessageBoxButtons.OK);
                     return;
                 }
             }

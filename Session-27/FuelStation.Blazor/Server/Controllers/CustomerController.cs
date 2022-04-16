@@ -58,7 +58,6 @@ namespace FuelStation.Blazor.Server.Controllers
                     viewmodel.Surname = foundCustomer.Surname;
                     viewmodel.CardNumber = foundCustomer.CardNumber;
                 }
-                viewmodel.CardNumber = String.Empty;
             }
             return viewmodel;
         }
@@ -85,7 +84,15 @@ namespace FuelStation.Blazor.Server.Controllers
         [HttpDelete("{id}")]
         public async Task Delete(uint id)
         {
-            await _customerRepo.DeleteAsync(id);
+            try
+            {
+                await _customerRepo.DeleteAsync(id);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         [HttpPut]
@@ -97,8 +104,14 @@ namespace FuelStation.Blazor.Server.Controllers
             customerToUpdate.Name = customer.Name;
             customerToUpdate.Surname = customer.Surname;
             customerToUpdate.CardNumber = customer.CardNumber;
-
-            await _customerRepo.UpdateAsync(customer.ID, customerToUpdate);
+            try
+            {
+                await _customerRepo.UpdateAsync(customer.ID, customerToUpdate);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             return Ok();
         }
 

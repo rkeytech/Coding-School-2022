@@ -30,7 +30,7 @@ namespace FuelStation.Blazor.Server.Controllers
                 ItemType = x.ItemType.ToString()
             });
         }
-        
+
         [HttpGet("{id}")]
         public async Task<ItemEditViewModel> Get(uint id)
         {
@@ -47,7 +47,7 @@ namespace FuelStation.Blazor.Server.Controllers
             }
             return viewmodel;
         }
-        
+
         [HttpPost]
         public async Task Post(ItemEditViewModel item)
         {
@@ -59,14 +59,27 @@ namespace FuelStation.Blazor.Server.Controllers
                 Price = item.Price,
                 ItemType = item.ItemType
             };
-            
-            await _itemRepo.AddAsync(newItem);
+            try
+            {
+                await _itemRepo.AddAsync(newItem);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task Delete(uint id)
         {
-            await _itemRepo.DeleteAsync(id);
+            try
+            {
+                await _itemRepo.DeleteAsync(id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         [HttpPut]
@@ -74,14 +87,21 @@ namespace FuelStation.Blazor.Server.Controllers
         {
             var itemToUpdate = await _itemRepo.GetByIdAsync(item.ID);
             if (itemToUpdate == null) return NotFound();
-            
+
             itemToUpdate.Code = item.Code;
             itemToUpdate.Description = item.Description;
             itemToUpdate.Cost = item.Cost;
             itemToUpdate.Price = item.Price;
             itemToUpdate.ItemType = item.ItemType;
 
-            await _itemRepo.UpdateAsync(item.ID, itemToUpdate);
+            try
+            {
+                await _itemRepo.UpdateAsync(item.ID, itemToUpdate);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             return Ok();
         }
 

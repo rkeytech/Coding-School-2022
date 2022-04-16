@@ -36,8 +36,8 @@ else
                         <td>@customer.Name</td>
                         <td>@customer.CardNumber</td>
                         <td>
-                            <button class="btn btn-warning text-primary" @onclick="() => EditItem(customer)">Edit</button>
-                            <button class="btn btn-danger text-primary" @onclick="() => DeleteItem(customer)">Delete</button>
+                            <button class="btn btn-warning" @onclick="() => EditItem(customer)">Edit</button>
+                            <button class="btn btn-danger" @onclick="() => DeleteItem(customer)">Delete</button>
                         </td>
                     </tr>
                 }
