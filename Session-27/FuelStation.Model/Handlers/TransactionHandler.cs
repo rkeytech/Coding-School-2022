@@ -43,9 +43,10 @@ namespace FuelStation.Model.Handlers
         public double ApplyTenPercentDiscount(double netValue, double discount, ItemTypeEnum type)
         {
             if (netValue <= 0) throw new ArgumentException("Net Value must be a non zero positive value");
+            if (discount < 0) throw new ArgumentException("Discount must be a positive value");
             if (type == ItemTypeEnum.Fuel && netValue > 20)
             {
-                return Math.Round(netValue * discount);
+                return CalculateDiscountValue(netValue, discount);
             }
             return 0;
         }

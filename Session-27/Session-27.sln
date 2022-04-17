@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuelStation.EF", "FuelStati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuelStation.Win", "FuelStation.Win\FuelStation.Win.csproj", "{7C466DF4-146B-4C43-A399-7B7BC3899F05}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuelStation.Tests", "FuelStation.Tests\FuelStation.Tests.csproj", "{5274911F-E2E1-4D2D-8B7A-85FDA0166E51}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuelStation.Tests", "FuelStation.Tests\FuelStation.Tests.csproj", "{2734BB81-566E-46D3-B274-6228178D6346}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +49,10 @@ Global
 		{7C466DF4-146B-4C43-A399-7B7BC3899F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C466DF4-146B-4C43-A399-7B7BC3899F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C466DF4-146B-4C43-A399-7B7BC3899F05}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5274911F-E2E1-4D2D-8B7A-85FDA0166E51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5274911F-E2E1-4D2D-8B7A-85FDA0166E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5274911F-E2E1-4D2D-8B7A-85FDA0166E51}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5274911F-E2E1-4D2D-8B7A-85FDA0166E51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2734BB81-566E-46D3-B274-6228178D6346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2734BB81-566E-46D3-B274-6228178D6346}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2734BB81-566E-46D3-B274-6228178D6346}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2734BB81-566E-46D3-B274-6228178D6346}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
