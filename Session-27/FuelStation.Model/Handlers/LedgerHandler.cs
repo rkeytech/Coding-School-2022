@@ -16,7 +16,7 @@ namespace FuelStation.Model.Handlers
 
         public double GetIncome(List<double> transactions)
         {
-            return transactions.Sum();
+            return Math.Round(transactions.Sum(), 2);
         }
 
         public double GetExpenses(List<Employee> employees, List<Transaction> transactions, double rent)

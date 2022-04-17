@@ -65,7 +65,7 @@ namespace FuelStation.Blazor.Server.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(e.InnerException);
             }
         }
 
@@ -78,7 +78,7 @@ namespace FuelStation.Blazor.Server.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(e.InnerException);
             }
         }
 
@@ -100,7 +100,7 @@ namespace FuelStation.Blazor.Server.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(e.InnerException);
             }
             return Ok();
         }
